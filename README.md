@@ -25,3 +25,4 @@ git pull
 
 just dont use this lol it'll fuck things up i think
 git push
+^ jk that's only when i worked at amazon, use this to update the remote repo with your commits
