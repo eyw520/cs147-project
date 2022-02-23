@@ -14,9 +14,9 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import Social from '../screens/nav/Social';
-import Home from '../screens/nav/Home';
-import Events from '../screens/nav/Events';
+import SocialScreen from '../screens/nav/SocialScreen';
+import HomeScreen from '../screens/nav/HomeScreen';
+import EventScreen from '../screens/nav/EventScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
@@ -65,10 +65,24 @@ function BottomTabNavigator() {
       }}>
       <BottomTab.Screen
         name="Social"
-        component={Social}
+        component={SocialScreen}
         options={({ navigation }: RootTabScreenProps<'Social'>) => ({
           title: 'Social',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          headerLeft: () => (
+            <Pressable
+              onPress={() => navigation.navigate('Modal')}
+              style={({ pressed }) => ({
+                opacity: pressed ? 0.5 : 1,
+              })}>
+              <FontAwesome
+                name="info-circle"
+                size={25}
+                color={Colors[colorScheme].text}
+                style={{ marginRight: 15 }}
+              />
+            </Pressable>
+          ),
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Modal')}
@@ -87,7 +101,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Home"
-        component={Home}
+        component={HomeScreen}
         options={{
           title: 'Home',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
@@ -95,7 +109,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Events"
-        component={Events}
+        component={EventScreen}
         options={{
           title: 'Events',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
