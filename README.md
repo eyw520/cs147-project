@@ -8,6 +8,12 @@ xCode iOS 13.5 Simulator
 
 
 HELPFUL GIT COMMANDS
+to create a new branch
+git branch BRANCHNAME
+
+to switch branches
+git checkout BRANCHNAME
+
 to add files to be committed, use -a for all
 git add -a
 
