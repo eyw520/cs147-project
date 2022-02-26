@@ -1,31 +1,35 @@
-import { StatusBar } from 'expo-status-bar';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeStack from './stacks/HomeStack';
-import EventsStack from './stacks/EventsStack';
-import SocialStack from './stacks/SocialStack';
 import { FontAwesome } from '@expo/vector-icons';
+
+import UserProfile from './data/SampleProfile';
+
+import HomeStack from './Stacks/HomeStack';
+import EventsStack from './Stacks/EventsStack';
+import SocialStack from './Stacks/SocialStack';
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  const [userProfile, setUserProfile] = useState(UserProfile);
+  const [friends, setFriends] = useState([]);
+  const [events, setEvents] = useState({});
+
   return (
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
-
-            if (route.name === 'Home') {
+            if (route.name === 'HomeStack') {
               iconName = 'code'
-            } else if (route.name === 'Events') {
+            } else if (route.name === 'EventsStack') {
               iconName = 'code'
-            } else if (route.name === 'Social') {
-              return <Ionicons name="code" size={size} color={color} />
+            } else if (route.name === 'SocialStack') {
+              iconName = 'code'
             }
-
-            // You can return any component that you like here!
             return <FontAwesome name={iconName} size={size} color={color} />;
           },
           tabBarActiveTintColor: 'black',
@@ -33,9 +37,9 @@ export default function App() {
           headerShown: false,
         })}
       >
-        <Tab.Screen name="Home" component={HomeStack} />
-        <Tab.Screen name="Events" component={EventsStack} />
-        <Tab.Screen name="Social" component={SocialStack} />
+        <Tab.Screen name="HomeStack" component={HomeStack} />
+        <Tab.Screen name="EventsStack" component={EventsStack} />
+        <Tab.Screen name="SocialStack" component={SocialStack} />
       </Tab.Navigator>
     </NavigationContainer>
   );
