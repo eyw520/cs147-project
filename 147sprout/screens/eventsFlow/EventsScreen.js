@@ -1,22 +1,19 @@
-import { StyleSheet, Button, Text, View } from 'react-native';
+import { StyleSheet, Button, Text, View, SafeAreaView } from 'react-native';
 
 export default function EventsScreen({ navigation }) {
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text>EVENTS</Text>
-      
+
       <View>
-        <Button
-            title="Create Event"
-            onPress={() => navigation.navigate("CreateEventScreen")}
-        />
         <Button
             title="Find Events"
             onPress={() => navigation.navigate("FindEventsScreen")}
         />
       </View>
-    </View>
+
+    </SafeAreaView>
   )
 }
 

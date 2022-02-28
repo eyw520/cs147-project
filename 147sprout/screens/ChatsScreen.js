@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 
 export default function ChatsScreen({ navigation }) {
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text>CHATS</Text>
-    </View>
+    </SafeAreaView>
   )
 }
 

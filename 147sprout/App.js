@@ -4,8 +4,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome } from '@expo/vector-icons';
 
-import UserProfile from './data/SampleProfile';
-
 import HomeStack from './stacks/HomeStack';
 import EventsStack from './stacks/EventsStack';
 import SocialStack from './stacks/SocialStack';
@@ -13,10 +11,6 @@ import SocialStack from './stacks/SocialStack';
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-  const [userProfile, setUserProfile] = useState(UserProfile);
-  const [friends, setFriends] = useState([]);
-  const [events, setEvents] = useState({});
-
   return (
     <NavigationContainer>
       <Tab.Navigator
