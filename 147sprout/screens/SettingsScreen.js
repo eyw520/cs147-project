@@ -4,7 +4,7 @@ export default function SettingsScreen({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text>{route.params.userProfile.name}</Text>
+      <Text>route.params.userProfile.name</Text>
     </View>
   )
 }
