@@ -6,9 +6,9 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import UserProfile from './data/SampleProfile';
 
-import HomeStack from './Stacks/HomeStack';
-import EventsStack from './Stacks/EventsStack';
-import SocialStack from './Stacks/SocialStack';
+import HomeStack from './stacks/HomeStack';
+import EventsStack from './stacks/EventsStack';
+import SocialStack from './stacks/SocialStack';
 
 const Tab = createBottomTabNavigator();
 

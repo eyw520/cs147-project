@@ -3,8 +3,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { TransitionPresets } from '@react-navigation/stack';
 import { FontAwesome } from '@expo/vector-icons';
 
-import ProfileScreen from '../Screens/ProfileFlow/ProfileScreen';
-import EditProfileScreen from '../Screens/ProfileFlow/EditProfileScreen';
+import ProfileScreen from '../screens/profileFlow/ProfileScreen';
+import EditProfileScreen from '../screens/profileFlow/EditProfileScreen';
 
 const Stack = createStackNavigator();
 

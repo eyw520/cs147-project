@@ -1,9 +1,9 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { TransitionPresets } from '@react-navigation/stack';
 
-import EventsScreen from '../Screens/EventsFlow/EventsScreen';
-import CreateEventScreen from '../Screens/EventsFlow/CreateEventScreen';
-import FindEventsScreen from '../Screens/EventsFlow/FindEventsScreen';
+import EventsScreen from '../screens/eventsFlow/EventsScreen';
+import CreateEventScreen from '../screens/eventsFlow/CreateEventScreen';
+import FindEventsScreen from '../screens/eventsFlow/FindEventsScreen';
 
 const Stack = createStackNavigator();
 

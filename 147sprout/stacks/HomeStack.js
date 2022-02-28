@@ -4,9 +4,9 @@ import { TransitionPresets } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 
-import HomeScreen from '../Screens/HomeFlow/HomeScreen';
+import HomeScreen from '../screens/homeFlow/HomeScreen';
 import ProfileStack from './ProfileStack';
-import SettingsScreen from '../Screens/SettingsScreen';
+import SettingsScreen from '../screens/SettingsScreen';
 
 const Stack = createStackNavigator();
 
