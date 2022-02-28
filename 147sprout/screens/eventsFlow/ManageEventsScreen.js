@@ -1,11 +1,10 @@
-import { StyleSheet, Text, View, Pressable, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView} from 'react-native';
 
-export default function HomeScreen({ route, navigation }) {
+export default function ManageEventsScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text> route.params.name </Text>
-      <Text>HOME</Text>
+      <Text>MANAGE EVENTS SCREEN</Text>
     </SafeAreaView>
   )
 }
