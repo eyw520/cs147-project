@@ -11,7 +11,6 @@ npm-debug.*
 web-build/
 
 # macOS
-<<<<<<< HEAD
 .DS_Store
 
 # @generated expo-cli sync-e7dcf75f4e856f7b6f3239b3f3a7dd614ee755a8
@@ -74,7 +73,3 @@ web-build/
 dist/
 
 # @end expo-cli
-=======
-**/.DS_Store
-../.DS_Store
->>>>>>> 5a17fa944b263d36c3a4e572e29f701c608af785
