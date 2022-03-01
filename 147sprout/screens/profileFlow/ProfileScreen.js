@@ -14,6 +14,7 @@ export default function ProfileScreen({ route, navigation }) {
   const getProfile = async () => {
     const profileRef = doc(db, "users", User.id);
     const profileSnap = await getDoc(profileRef);
+    console.log("read query performed.")
     if (profileSnap.exists()) {
       let data = profileSnap.data()
       setUserData(data)

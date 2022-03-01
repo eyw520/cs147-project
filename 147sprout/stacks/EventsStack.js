@@ -10,6 +10,7 @@ import ManageEventsScreen from '../screens/eventsFlow/ManageEventsScreen';
 import CreateEventScreen from '../screens/eventsFlow/CreateEventScreen';
 import FindEventsScreen from '../screens/eventsFlow/FindEventsScreen';
 import EventsDisplayScreen from '../screens/eventsFlow/EventsDisplayScreen';
+import EventRegistrationScreen from '../screens/eventsFlow/EventRegistrationScreen';
 
 const Stack = createStackNavigator();
 
@@ -48,6 +49,7 @@ export default function EventsStack({ navigation }) {
       <Stack.Screen name="Manage Events" component={ManageEventsScreen} />
       <Stack.Screen name="Create Events" component={CreateEventScreen} />
       <Stack.Screen name="Find Events" component={FindEventsScreen} />
+      <Stack.Screen name="Register" component={EventRegistrationScreen} />
 
       <Stack.Screen name="AAPI Rights" component={EventsDisplayScreen} />
       <Stack.Screen name="Climate Change" component={EventsDisplayScreen} />

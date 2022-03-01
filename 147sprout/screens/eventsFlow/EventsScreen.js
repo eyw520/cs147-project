@@ -13,20 +13,24 @@ export default function EventsScreen({ navigation }) {
 
   const getAllEvents = async () => {
     const querySnapshot = await getDocs(collection(db, "events"));
+    console.log("read collection query performed.")
     let ls = []
     querySnapshot.forEach((doc) => { ls = [...ls, doc.data()] });
     setAllEvents(ls)
   };
 
   const getUserEvents = () => {
-    setUserAttending(allEvents.filter(item => item.attendees.includes(User.username)))
-    setUserHosting(allEvents.filter(item => item.host === User.username))
+    setUserAttending(allEvents.filter(item => item.attendees.includes(User.id)))
+    setUserHosting(allEvents.filter(item => item.host === User.id))
   };
 
   useEffect(() => {
     getAllEvents();
-    getUserEvents();
   }, []);
+
+  useEffect(() => {
+    getUserEvents();
+  }, [allEvents]);
 
   return (
     <SafeAreaView style={styles.container}>
