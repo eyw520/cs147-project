@@ -1,15 +1,53 @@
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Pressable } from 'react-native';
+import { Dropdown } from 'react-native-element-dropdown';
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
 
-export default function FindEventsScreen({ navigation }) {
-  // [userEvents, setUserEvents] = useState([])
+import Interests from "../../consts/interests";
+import Locations from "../../consts/locations";
 
-  // retrieve user events
+const SortBy = [
+  {label: "Sort By: Interests", val: "Interests"},
+  {label: "Sort By: Locations", val: "Locations"}
+]
+
+export default function FindEventsScreen({ route, navigation }) {
+  const [sort, setSort] = useState("Interests")
+  const { allEvents, userAttending, userHosting } = route.params;
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>FIND EVENTS SCREEN</Text>
+
+    <Dropdown
+      style = {styles.dropdown}
+      data = {SortBy}
+      placeholder = 'Sort By: Interests'
+      labelField = "label"
+      valueField = "val"
+      value = {sort}
+      onChange = {(item) => { setSort(item.val) }}
+    />
+
+    <Text style={{fontSize: 20}}>Sorting By</Text>
+      {sort === "Interests" ?
+        Interests.map((interest, idx) => {
+          return <Pressable style={styles.sort} key = {idx}
+            onPress={() => {navigation.navigate(interest, {
+              eventList: allEvents.filter(item => item.interests.includes(interest)),
+            })}}>
+            <Text> {interest} </Text>
+          </Pressable>
+        })
+        :
+        Locations.map((location, idx) => {
+          return <Pressable style={styles.sort} key = {idx}
+            onPress={() => {navigation.navigate(location, {
+              eventList: allEvents.filter(item => item.locations.includes(location)),
+            })}}>
+            <Text> {location} </Text>
+          </Pressable>
+        })
+      }
     </SafeAreaView>
   )
 }
@@ -21,5 +59,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     display: 'flex',
+  },
+  sort: {
+    borderStyle: "solid",
+    borderWidth:  1
+  },
+  dropdown: {
+    width: 300
   }
 });

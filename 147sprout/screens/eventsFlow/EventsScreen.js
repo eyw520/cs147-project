@@ -1,24 +1,71 @@
 import { StyleSheet, Button, Text, View, SafeAreaView } from 'react-native';
+import React, { useEffect, useState } from "react";
+import { db } from "../../firebase";
+import { collection, getDocs } from "firebase/firestore";
+
+import EventList from "../../components/EventList";
+import User from "../../consts/user";
 
 export default function EventsScreen({ navigation }) {
+  const [allEvents, setAllEvents] = useState([])
+  const [userAttending, setUserAttending] = useState([])
+  const [userHosting, setUserHosting] = useState([])
+
+  const getAllEvents = async () => {
+    const querySnapshot = await getDocs(collection(db, "events"));
+    let ls = []
+    querySnapshot.forEach((doc) => { ls = [...ls, doc.data()] });
+    setAllEvents(ls)
+  };
+
+  const getUserEvents = () => {
+    setUserAttending(allEvents.filter(item => item.attendees.includes(User.username)))
+    setUserHosting(allEvents.filter(item => item.host === User.username))
+  };
+
+  useEffect(() => {
+    getAllEvents();
+    getUserEvents();
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>EVENTS</Text>
 
-      <View>
-        <Button
-            title="Find Events"
-            onPress={() => navigation.navigate("FindEventsScreen")}
-        />
+      <View style={styles.container}>
+        <Text style={{fontSize: 20}}> Events You're Attending </Text>
+        <EventList events={userAttending} />
       </View>
 
+      <View style={styles.container}>
+        <Text style={{fontSize: 20}}> Events You're Hosting </Text>
+        <EventList events={userHosting} />
+      </View>
+
+      <View style={styles.button}>
+        <Button
+            title="Find Events"
+            onPress={() => navigation.navigate("Find Events", {
+              allEvents: allEvents,
+              userAttending: userAttending,
+              userHosting: userHosting,
+            })}
+        />
+      </View>
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 4,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    display: 'flex',
+    paddingTop: 10,
+    paddingBottom: 10
+  },
+  button: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',

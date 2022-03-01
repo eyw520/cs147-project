@@ -5,9 +5,11 @@ import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 
 import EventsScreen from '../screens/eventsFlow/EventsScreen';
+import EventInformationScreen from '../screens/eventsFlow/EventInformationScreen';
 import ManageEventsScreen from '../screens/eventsFlow/ManageEventsScreen';
 import CreateEventScreen from '../screens/eventsFlow/CreateEventScreen';
 import FindEventsScreen from '../screens/eventsFlow/FindEventsScreen';
+import EventsDisplayScreen from '../screens/eventsFlow/EventsDisplayScreen';
 
 const Stack = createStackNavigator();
 
@@ -17,12 +19,12 @@ export default function EventsStack({ navigation }) {
       screenOptions= {() => ({
         headerShown: true,
       })}>
-      <Stack.Screen name="EventsScreen" component={EventsScreen}
+      <Stack.Screen name="Events" component={EventsScreen}
         options={() => ({
           title: 'Events',
           headerLeft: () => (
             <Pressable
-              onPress={() => navigation.navigate('ManageEventsScreen')}
+              onPress={() => navigation.navigate('Manage Events')}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
               })}>
@@ -32,7 +34,7 @@ export default function EventsStack({ navigation }) {
           ),
           headerRight: () => (
             <Pressable
-              onPress={() => navigation.navigate('CreateEventScreen')}
+              onPress={() => navigation.navigate('Create Events')}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
               })}>
@@ -42,9 +44,23 @@ export default function EventsStack({ navigation }) {
           ),
         })}
       />
-      <Stack.Screen name="ManageEventsScreen" component={ManageEventsScreen} />
-      <Stack.Screen name="CreateEventScreen" component={CreateEventScreen} />
-      <Stack.Screen name="FindEventsScreen" component={FindEventsScreen} />
+      <Stack.Screen name="Event Information" component={EventInformationScreen}/>
+      <Stack.Screen name="Manage Events" component={ManageEventsScreen} />
+      <Stack.Screen name="Create Events" component={CreateEventScreen} />
+      <Stack.Screen name="Find Events" component={FindEventsScreen} />
+
+      <Stack.Screen name="AAPI Rights" component={EventsDisplayScreen} />
+      <Stack.Screen name="Climate Change" component={EventsDisplayScreen} />
+      <Stack.Screen name="Environmentalism" component={EventsDisplayScreen} />
+      <Stack.Screen name="Feminism" component={EventsDisplayScreen} />
+      <Stack.Screen name="Healthcare" component={EventsDisplayScreen} />
+      <Stack.Screen name="Housing Justice" component={EventsDisplayScreen} />
+
+      <Stack.Screen name="New York City" component={EventsDisplayScreen} />
+      <Stack.Screen name="San Francisco" component={EventsDisplayScreen} />
+      <Stack.Screen name="Los Angeles" component={EventsDisplayScreen} />
+      <Stack.Screen name="Seattle" component={EventsDisplayScreen} />
+      <Stack.Screen name="Oakland" component={EventsDisplayScreen} />
     </Stack.Navigator>
   );
 }

@@ -31,7 +31,7 @@ export default function SocialStack({ navigation }) {
           ),
           headerRight: () => (
             <Pressable
-              onPress={() => navigation.navigate('ChatsScreen')}
+              onPress={() => navigation.navigate('Chats')}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
               })}>
@@ -42,7 +42,7 @@ export default function SocialStack({ navigation }) {
         })}
       />
       <Stack.Screen name="ProfileStack" component={ProfileStack} />
-      <Stack.Screen name="ChatsScreen" component={ChatsScreen} />
+      <Stack.Screen name="Chats" component={ChatsScreen} />
     </Stack.Navigator>
   );
 }

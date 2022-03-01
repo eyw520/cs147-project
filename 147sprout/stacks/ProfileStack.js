@@ -15,12 +15,12 @@ export default function ProfileStack({ route, navigation }) {
       screenOptions= {() => ({
         headerShown: false,
       })}>
-      <Stack.Screen name="ProfileScreen" component={ProfileScreen}
+      <Stack.Screen name="Profile" component={ProfileScreen}
         options={() => ({
           title: 'My Profile',
           headerRight: () => (
             <Pressable
-              onPress={() => navigation.navigate('EditProfileScreen')}
+              onPress={() => navigation.navigate('Edit Profile')}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
               })}>
@@ -30,7 +30,7 @@ export default function ProfileStack({ route, navigation }) {
           ),
         })}
       />
-      <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
+      <Stack.Screen name="Edit Profile" component={EditProfileScreen} />
     </Stack.Navigator>
   );
 }

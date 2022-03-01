@@ -17,7 +17,7 @@ export default function HomeStack({ route, navigation }) {
       screenOptions= {() => ({
         headerShown: true,
       })}>
-      <Stack.Screen name="HomeScreen" component={HomeScreen}
+      <Stack.Screen name="Home" component={HomeScreen}
         options={() => ({
           title: 'Home',
           headerLeft: () => (
@@ -32,7 +32,7 @@ export default function HomeStack({ route, navigation }) {
           ),
           headerRight: () => (
             <Pressable
-              onPress={() => navigation.navigate('SettingsScreen')}
+              onPress={() => navigation.navigate('Settings')}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
               })}>
@@ -43,7 +43,7 @@ export default function HomeStack({ route, navigation }) {
         })}
       />
       <Stack.Screen name="ProfileStack" component={ProfileStack} />
-      <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
+      <Stack.Screen name="Settings" component={SettingsScreen} />
     </Stack.Navigator>
   );
 }

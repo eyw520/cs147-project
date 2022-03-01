@@ -11,6 +11,19 @@ import SocialStack from './stacks/SocialStack';
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  // ensures DB consistency when adding data; make changes as necessary to confirm.
+  const ensureConsistency = async () => {
+    const usersSnapshot = await getDocs(collection(db, "users"));
+    const eventsSnapshot = await getDocs(collection(db, "events"));
+    usersSnapshot.forEach((user) => {
+
+    });
+    eventsSnapshot.forEach((doc) => {
+
+    });
+  };
+
+
   return (
     <NavigationContainer>
       <Tab.Navigator

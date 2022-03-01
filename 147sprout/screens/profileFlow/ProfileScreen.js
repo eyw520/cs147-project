@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import { doc, getDoc } from "firebase/firestore";
 
+import User from "../../consts/user";
+
 export default function ProfileScreen({ route, navigation }) {
   const [userData, setUserData] = useState({})
   const [userInterests, setUserInterests] = useState([])
@@ -10,7 +12,7 @@ export default function ProfileScreen({ route, navigation }) {
   const [userSkills, setUserSkills] = useState([])
 
   const getProfile = async () => {
-    const profileRef = doc(db, "users", "user1");
+    const profileRef = doc(db, "users", User.id);
     const profileSnap = await getDoc(profileRef);
     if (profileSnap.exists()) {
       let data = profileSnap.data()
@@ -19,7 +21,7 @@ export default function ProfileScreen({ route, navigation }) {
       setUserLocations(data.locations)
       setUserSkills(data.skills)
     } else {
-      console.log("error retrieving user profile.")
+      console.log("unable to retrieve user profile.")
     }
   };
 
@@ -39,25 +41,22 @@ export default function ProfileScreen({ route, navigation }) {
       <View style={styles.container}>
         <Text> USER INTERESTS </Text>
         {userInterests.map((interest, idx) => {
-          return <Text> {idx}: {interest} </Text>
-        })
-        }
+          return <Text key={idx}> {idx}: {interest} </Text>
+        })}
       </View>
 
       <View style={styles.container}>
         <Text> USER SKILLS </Text>
-        {userSkills.map((interest, idx) => {
-          return <Text> {idx}: {interest} </Text>
-        })
-        }
+        {userSkills.map((skill, idx) => {
+          return <Text key={idx}>  {idx}: {skill} </Text>
+        })}
       </View>
 
       <View style={styles.container}>
         <Text> LOCATIONS </Text>
         {userLocations.map((location, idx) => {
-          return <Text> {idx}: {location} </Text>
-        })
-        }
+          return <Text key={idx}> {idx}: {location} </Text>
+        })}
       </View>
     </SafeAreaView>
   )
