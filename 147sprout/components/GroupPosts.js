@@ -8,7 +8,7 @@ export default function GroupPosts({ posts }) {
     return (
       <View style={styles.container}>
         <View key={item.title}>
-          <Text> {item.author}, {item.timestamp} </Text>
+          <Text> {item.posterId}, {item.id} </Text>
           <Text> {item.contents} </Text>
           <Text> {item.likes} </Text>
         </View>

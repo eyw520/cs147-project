@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Pressable, SafeAreaView } from 'react-native';
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import { doc, getDoc } from "firebase/firestore";
@@ -10,6 +10,8 @@ export default function ProfileScreen({ route, navigation }) {
   const [userInterests, setUserInterests] = useState([])
   const [userLocations, setUserLocations] = useState([])
   const [userSkills, setUserSkills] = useState([])
+  const [userFriends, setUserFriends] = useState([])
+  const [userFriendRequests, setUserFriendRequests] = useState([])
 
   const getProfile = async () => {
     const profileRef = doc(db, "users", USER.id);
@@ -21,6 +23,8 @@ export default function ProfileScreen({ route, navigation }) {
       setUserInterests(data.interests)
       setUserLocations(data.locations)
       setUserSkills(data.skills)
+      setUserFriends(data.friends)
+      setUserFriendRequests(data.friendRequests)
     } else {
       console.log("unable to retrieve user profile.")
     }
@@ -59,6 +63,14 @@ export default function ProfileScreen({ route, navigation }) {
           return <Text key={idx}> {idx}: {location} </Text>
         })}
       </View>
+
+      <Pressable onPress={() => {navigation.navigate("Your Friends", {
+        friends: userFriends
+      })}}>
+        <Text>
+          Your Friends
+        </Text>
+      </Pressable>
     </SafeAreaView>
   )
 }

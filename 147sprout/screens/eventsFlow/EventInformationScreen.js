@@ -36,15 +36,15 @@ export default function EventInformationScreen({ route, navigation }) {
 
   const approveEvent = async () => {
     const eventRef = doc(db, "events", eventData.id);
-    if (eventData.numApproved == eventData.reviewers.length - 1) {
+    if (eventData.approvers.length == eventData.reviewers.length - 1) {
       await updateDoc(eventRef, {
-        numApproved: eventData.attendees,
+        approvers: [...eventData.approvers, USER.id],
         status: "live",
         message: message
       });
     } else {
       await updateDoc(eventRef, {
-        numApproved: eventData.numApproved + 1
+        approvers: [...eventData.approvers, USER.id]
       });
     }
     const eventSnap = await getDoc(eventRef);

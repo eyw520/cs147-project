@@ -6,35 +6,20 @@ import USER from "../consts/user";
 export default function GroupList({ groups }) {
   const navigation = useNavigation();
 
-  const joinGroup = async () => {
-
-  }
-
-  const leaveGroup = async () => {
-    
-  }
-
   const renderItem = ({ item }) => {
     return (
       <View style={styles.container}>
         <Pressable onPress={() => {navigation.navigate(item.groupName, {
-          groupData: item,
+          groupId: item.id,
+          data: item
         })}}>
           <View key={item.id}>
             <Text> {item.groupName}, {item.img} </Text>
             <Text> {item.groupDescription} </Text>
-            <Text> {item.members.length} </Text>
+            <Text>  </Text>
+            <Text> # members: {item.members.length} </Text>
           </View>
         </Pressable>
-        {USER.groups.includes(item.id) ?
-          <Pressable onPress={() => joinGroup()}>
-            <Text> Leave Group </Text>
-          </Pressable>
-        :
-          <Pressable onPress={() => joinGroup()}>
-            <Text> Join Group </Text>
-          </Pressable>
-        }
       </View>
     );
   }

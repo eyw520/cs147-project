@@ -4,7 +4,8 @@ export default function EditProfileScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>EDIT PROFILE</Text>
+    <Text> [CURRENTLY UNIMPLEMENTED] </Text>
+    <Text> You'll be able to modify user details on this page! </Text>
     </SafeAreaView>
   )
 }

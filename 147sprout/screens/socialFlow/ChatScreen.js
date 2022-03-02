@@ -30,7 +30,8 @@ export default function ChatScreen({ route, navigation }) {
     const chatRef = doc(db, "chats", chatData.id);
     await updateDoc(chatRef, {
       latestSender: USER.name,
-      latestMessage: message.text
+      latestMessage: message.text,
+      latestTimestamp: new Date(message.createdAt)
     });
   }
 

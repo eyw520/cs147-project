@@ -8,8 +8,11 @@ import GroupInformationScreen from '../screens/socialFlow/GroupInformationScreen
 import GroupsDisplayScreen from '../screens/socialFlow/GroupsDisplayScreen';
 import MessagesScreen from '../screens/socialFlow/MessagesScreen';
 import ChatScreen from '../screens/socialFlow/ChatScreen';
+import ViewProfileScreen from '../screens/profileFlow/ViewProfileScreen';
+import UserGroupsDisplayScreen from '../screens/profileFlow/UserGroupsDisplayScreen';
 import ProfileScreen from '../screens/profileFlow/ProfileScreen';
 import EditProfileScreen from '../screens/profileFlow/EditProfileScreen';
+import FriendsDisplayScreen from '../screens/profileFlow/FriendsDisplayScreen';
 
 const Stack = createStackNavigator();
 
@@ -65,8 +68,11 @@ export default function SocialStack({ navigation }) {
           title: 'Edit Profile',
         })}
       />
+      <Stack.Screen name="View Profile" component={ViewProfileScreen} />
       <Stack.Screen name="Messages" component={MessagesScreen} />
       <Stack.Screen name="Chat" component={ChatScreen} />
+      <Stack.Screen name="Your Friends" component={FriendsDisplayScreen} />
+      <Stack.Screen name="View User Groups" component={UserGroupsDisplayScreen} />
 
       <Stack.Screen name="Discover Groups" component={GroupsDisplayScreen} />
       <Stack.Screen name="Your Groups" component={GroupsDisplayScreen} />

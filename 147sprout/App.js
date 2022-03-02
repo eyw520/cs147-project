@@ -33,20 +33,22 @@ export default function App() {
   const checkUser = async () => {
     const docRef = doc(db, "users", USER.id);
     const docSnap = await getDoc(docRef);
-
-    const querySnapshot = await getDocs(collection(db, "users"));
-    await setDoc(doc(db, "users", USER.id), {
-      id: USER.id,
-      name: USER.name,
-      username: USER.username,
-      pronouns: USER.pronouns,
-      interests: USER.interests,
-      groups: USER.groups,
-      skills: USER.skills,
-      locations: USER.locations,
-      isReviewer: USER.isReviewer,
-      img: USER.img
-    });
+    if (!docSnap.exists()) {
+      const querySnapshot = await getDocs(collection(db, "users"));
+      await setDoc(doc(db, "users", USER.id), {
+        id: USER.id,
+        name: USER.name,
+        username: USER.username,
+        pronouns: USER.pronouns,
+        friends: USER.friends,
+        interests: USER.interests,
+        groups: USER.groups,
+        skills: USER.skills,
+        locations: USER.locations,
+        isReviewer: USER.isReviewer,
+        img: USER.img
+      });
+    }
   };
 
   const checkGroups = async () => {

@@ -17,6 +17,7 @@ export default function MessagesScreen({ navigation }) {
     queryResults.forEach((doc) => {
       ls = [...ls, doc.data()]
     })
+    ls.sort((a, b) => b.latestTimestamp.toString() > a.latestTimestamp.toString())
     setChatData(ls)
   };
 

@@ -25,7 +25,6 @@ export default function EventRegistrationScreen({ route, navigation }) {
     await updateDoc(eventRef, {
       attendees: [...eventData.attendees, USER.id]
     });
-    const eventSnap = await getDoc(eventRef);
     console.log("update performed")
     navigation.navigate("Events")
   }

@@ -4,7 +4,8 @@ export default function SettingsScreen({ route, navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>route.params.userProfile.name</Text>
+      <Text> [CURRENTLY UNIMPLEMENTED] </Text>
+      <Text> You'll be able to change specific preferences on this page! </Text>
     </SafeAreaView>
   )
 }
