@@ -19,6 +19,7 @@ export default function ProfileScreen({ route, navigation }) {
     console.log("read query performed.")
     if (profileSnap.exists()) {
       let data = profileSnap.data()
+      console.log(data)
       setUserData(data)
       setUserInterests(data.interests)
       setUserLocations(data.locations)
