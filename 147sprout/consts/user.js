@@ -103,4 +103,4 @@ const shindrew = {
   img: "../assets/sampleProfile.png"
 }
 
-export default shindrew;
+export default natyunqi;
