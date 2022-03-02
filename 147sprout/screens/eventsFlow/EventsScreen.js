@@ -21,7 +21,7 @@ export default function EventsScreen({ navigation }) {
   };
 
   const getUserEvents = () => {
-    setUserAttending(allEvents.filter(item => item.attendees.includes(USER.id) && item.status === "live"))
+    setUserAttending(allEvents.filter(item => item.host !== USER.id && item.attendees.includes(USER.id) && item.status === "live"))
     setUserHosting(allEvents.filter(item => item.host === USER.id && item.status === "live"))
   };
 
