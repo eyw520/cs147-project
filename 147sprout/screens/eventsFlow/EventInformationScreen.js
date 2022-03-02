@@ -88,7 +88,7 @@ export default function EventInformationScreen({ route, navigation }) {
       <SafeAreaView style={styles.container}>
         <View style={styles.container}>
           <Text> {eventData.eventName} </Text>
-          <Text> {eventData.eventStart.toString()}, {eventData.eventEnd.toString()} </Text>
+          <Text> {eventData.eventStart}, {eventData.eventEnd} </Text>
           <Text> {eventData.eventAddress} </Text>
           <Text> {eventData.eventDescription} </Text>
         </View>

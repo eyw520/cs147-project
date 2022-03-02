@@ -55,6 +55,8 @@ export default function ViewProfileScreen({ route, navigation }) {
     let ls = []
     let ct = 0
     const chatsRef = collection(db, "chats");
+    let memberKey = [USER.id, userData.id].sort()
+    memberKey.sort((a, b) => b.id.charAt(-1) > a.id.charAt(-1))
     const q = query(chatsRef, where("members", "==", [USER.id, userData.id]));
     const queryResults = await getDocs(q);
     queryResults.forEach((doc) => {
