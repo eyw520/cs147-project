@@ -33,7 +33,8 @@ export default function FindEventsScreen({ route, navigation }) {
         INTERESTS.map((interest, idx) => {
           return <Pressable style={styles.sort} key = {interest.key}
             onPress={() => {navigation.navigate(interest.val, {
-              eventList: allEvents.filter(item => item.interests.includes(interest.val) && item.status !== "draft"),
+              eventList: allEvents.filter(item => item.interests.includes(interest.val) && item.status === "live"),
+              title: interest.val
             })}}>
             <Text> {interest.val} </Text>
           </Pressable>
@@ -42,7 +43,8 @@ export default function FindEventsScreen({ route, navigation }) {
         LOCATIONS.map((location, idx) => {
           return <Pressable style={styles.sort} key = {location.key}
             onPress={() => {navigation.navigate(location.val, {
-              eventList: allEvents.filter(item => item.locations.includes(location.val) && item.status !== "draft"),
+              eventList: allEvents.filter(item => item.locations.includes(location.val) && item.status === "live"),
+              title: location.val
             })}}>
             <Text> {location.val} </Text>
           </Pressable>

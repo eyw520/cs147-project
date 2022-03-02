@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 
-export default function GroupInformationScreen({ navigation }) {
+export default function GroupInformationScreen({ route, navigation }) {
+  const { groupData } = route.params
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>SOCIAL</Text>
+      <Text>GROUP PAGE {groupData.groupName} </Text>
     </SafeAreaView>
   )
 }

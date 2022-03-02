@@ -1,10 +1,10 @@
 const INTERESTS = [
-  {key: 0, val: "AAPI Rights"},
-  {key: 1, val: "Climate Change"},
-  {key: 2, val: "Environmentalism"},
-  {key: 3, val: "Feminism"},
-  {key: 4, val: "Healthcare"},
-  {key: 5, val: "Housing Justice"}
+  {key: "group0", val: "AAPI Rights"},
+  {key: "group1", val: "Climate Change"},
+  {key: "group2", val: "Environmentalism"},
+  {key: "group3", val: "Feminism"},
+  {key: "group4", val: "Healthcare"},
+  {key: "group5", val: "Housing Justice"}
 ]
 
 export default INTERESTS;

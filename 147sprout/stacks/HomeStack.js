@@ -7,7 +7,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import HomeScreen from '../screens/homeFlow/HomeScreen';
 import ProfileScreen from '../screens/profileFlow/ProfileScreen';
 import EditProfileScreen from '../screens/profileFlow/EditProfileScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import SettingsScreen from '../screens/homeFlow/SettingsScreen';
 
 const Stack = createStackNavigator();
 

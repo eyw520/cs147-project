@@ -20,21 +20,19 @@ export default function App() {
     const docRef = doc(db, "users", USER.id);
     const docSnap = await getDoc(docRef);
 
-    if (!docSnap.exists()) {
-      const querySnapshot = await getDocs(collection(db, "users"));
-      await setDoc(doc(db, "users", USER.id), {
-        id: USER.id,
-        name: USER.name,
-        username: USER.username,
-        pronouns: USER.pronouns,
-        interests: USER.interests,
-        skills: USER.skills,
-        locations: USER.locations,
-        isReviewer: USER.isReviewer,
-        img: USER.img
-      });
-      console.log("new user created")
-    }
+    const querySnapshot = await getDocs(collection(db, "users"));
+    await setDoc(doc(db, "users", USER.id), {
+      id: USER.id,
+      name: USER.name,
+      username: USER.username,
+      pronouns: USER.pronouns,
+      interests: USER.interests,
+      groups: USER.groups,
+      skills: USER.skills,
+      locations: USER.locations,
+      isReviewer: USER.isReviewer,
+      img: USER.img
+    });
   };
 
   useEffect(() => {

@@ -1,16 +1,16 @@
 import { StyleSheet, Pressable, Text, View, FlatList, SafeAreaView } from 'react-native';
 import React, { useEffect, useState } from "react";
 
-import EventList from "../../components/EventList";
+import GroupList from "../../components/GroupList";
 
-// provided in route a list of events, display to take up entire screen.
-export default function EventsDisplayScreen({ navigation, route }) {
-  const { eventList, title } = route.params;
+// provided in route a list of groups, display to take up entire screen.
+export default function GroupsDisplayScreen({ navigation, route }) {
+  const { groupList, title } = route.params;
 
   return (
     <SafeAreaView style={styles.container}>
       <Text> {title} </Text>
-      <EventList events={eventList} />
+      <GroupList groups={groupList} />
     </SafeAreaView>
   )
 }
