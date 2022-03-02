@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
 
-import GroupList from "../../components/GroupList";
+import GroupDisplayList from "../../components/GroupDisplayList";
 
 // provided in route a list of groups, display to take up entire screen.
 export default function GroupsDisplayScreen({ navigation, route }) {
@@ -25,7 +25,7 @@ export default function GroupsDisplayScreen({ navigation, route }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <GroupList groups={groupList} />
+      <GroupDisplayList groups={groupList} />
     </SafeAreaView>
   )
 }
