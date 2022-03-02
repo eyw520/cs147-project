@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import { doc, getDoc } from "firebase/firestore";
 
-import User from "../../consts/user";
+import USER from "../../consts/user";
 
 export default function ProfileScreen({ route, navigation }) {
   const [userData, setUserData] = useState({})
@@ -12,7 +12,7 @@ export default function ProfileScreen({ route, navigation }) {
   const [userSkills, setUserSkills] = useState([])
 
   const getProfile = async () => {
-    const profileRef = doc(db, "users", User.id);
+    const profileRef = doc(db, "users", USER.id);
     const profileSnap = await getDoc(profileRef);
     console.log("read query performed.")
     if (profileSnap.exists()) {

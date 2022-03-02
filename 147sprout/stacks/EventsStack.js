@@ -11,6 +11,12 @@ import CreateEventScreen from '../screens/eventsFlow/CreateEventScreen';
 import FindEventsScreen from '../screens/eventsFlow/FindEventsScreen';
 import EventsDisplayScreen from '../screens/eventsFlow/EventsDisplayScreen';
 import EventRegistrationScreen from '../screens/eventsFlow/EventRegistrationScreen';
+import EventCancellationScreen from '../screens/eventsFlow/EventCancellationScreen';
+import EventDeletionScreen from '../screens/eventsFlow/EventDeletionScreen';
+import EventRestoreScreen from '../screens/eventsFlow/EventRestoreScreen';
+import EventReviewScreen from '../screens/eventsFlow/EventReviewScreen';
+
+import User from "../consts/user";
 
 const Stack = createStackNavigator();
 
@@ -46,10 +52,69 @@ export default function EventsStack({ navigation }) {
         })}
       />
       <Stack.Screen name="Event Information" component={EventInformationScreen}/>
-      <Stack.Screen name="Manage Events" component={ManageEventsScreen} />
+      {User.isReviewer ?
+        <Stack.Screen name="Manage Events" component={ManageEventsScreen}
+          options={() => ({
+            headerLeft: () => (
+              <Pressable
+                onPress={() => navigation.navigate('Events')}
+                style={({ pressed }) => ({
+                  opacity: pressed ? 0.5 : 1,
+                })}>
+                <FontAwesome name="code" size={30} color="gray" />
+                <Text> Events </Text>
+              </Pressable>
+            ),
+            headerRight: () => (
+              <Pressable
+                onPress={() => navigation.navigate('Review Events')}
+                style={({ pressed }) => ({
+                  opacity: pressed ? 0.5 : 1,
+                })}>
+                <FontAwesome name="code" size={30} color="gray" />
+                <Text> Review </Text>
+              </Pressable>
+            ),
+          })}
+        />
+        :
+        <Stack.Screen name="Manage Events" component={ManageEventsScreen}
+          options={() => ({
+            headerLeft: () => (
+              <Pressable
+                onPress={() => navigation.navigate('Events')}
+                style={({ pressed }) => ({
+                  opacity: pressed ? 0.5 : 1,
+                })}>
+                <FontAwesome name="code" size={30} color="gray" />
+                <Text> Events </Text>
+              </Pressable>
+            ),
+          })}
+        />
+      }
       <Stack.Screen name="Create Events" component={CreateEventScreen} />
       <Stack.Screen name="Find Events" component={FindEventsScreen} />
+      <Stack.Screen name="Cancel" component={EventCancellationScreen} />
       <Stack.Screen name="Register" component={EventRegistrationScreen} />
+      <Stack.Screen name="Delete Event" component={EventDeletionScreen} />
+      <Stack.Screen name="Restore Event" component={EventRestoreScreen} />
+      {User.isReviewer &&
+        <Stack.Screen name="Review Events" component={EventReviewScreen}
+        options={() => ({
+          headerLeft: () => (
+            <Pressable
+              onPress={() => navigation.navigate('Manage Events')}
+              style={({ pressed }) => ({
+                opacity: pressed ? 0.5 : 1,
+              })}>
+              <FontAwesome name="code" size={30} color="gray" />
+              <Text> Events </Text>
+            </Pressable>
+          ),
+        })}
+        />
+      }
 
       <Stack.Screen name="AAPI Rights" component={EventsDisplayScreen} />
       <Stack.Screen name="Climate Change" component={EventsDisplayScreen} />

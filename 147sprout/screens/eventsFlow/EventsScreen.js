@@ -4,7 +4,8 @@ import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
 
 import EventList from "../../components/EventList";
-import User from "../../consts/user";
+
+import USER from "../../consts/user";
 
 export default function EventsScreen({ navigation }) {
   const [allEvents, setAllEvents] = useState([])
@@ -20,13 +21,18 @@ export default function EventsScreen({ navigation }) {
   };
 
   const getUserEvents = () => {
-    setUserAttending(allEvents.filter(item => item.attendees.includes(User.id)))
-    setUserHosting(allEvents.filter(item => item.host === User.id))
+    setUserAttending(allEvents.filter(item => item.attendees.includes(USER.id) && item.status === "live"))
+    setUserHosting(allEvents.filter(item => item.host === USER.id && item.status === "live"))
   };
 
   useEffect(() => {
-    getAllEvents();
-  }, []);
+    navigation.addListener(
+          'focus',
+          payload => {
+              getAllEvents();
+          }
+      );
+    }, [])
 
   useEffect(() => {
     getUserEvents();

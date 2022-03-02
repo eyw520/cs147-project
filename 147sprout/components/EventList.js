@@ -11,7 +11,7 @@ export default function EventList({ events }) {
           eventData: item,
         })}}>
           <View key={item.id}>
-            <Text> {item.eventName} </Text>
+            <Text> {item.eventName}, {item.eventAddress} </Text>
             <Text> {item.eventDescription} </Text>
             <Text> {item.eventStart}, {item.eventEnd} </Text>
           </View>

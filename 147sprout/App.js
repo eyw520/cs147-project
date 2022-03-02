@@ -1,28 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome } from '@expo/vector-icons';
+import { collection, doc, getDocs, getDoc, setDoc } from "firebase/firestore";
+import { db } from "./firebase";
 
 import HomeStack from './stacks/HomeStack';
 import EventsStack from './stacks/EventsStack';
 import SocialStack from './stacks/SocialStack';
 
+import USER from "./consts/user";
+
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-  // ensures DB consistency when adding data; make changes as necessary to confirm.
-  const ensureConsistency = async () => {
-    const usersSnapshot = await getDocs(collection(db, "users"));
-    const eventsSnapshot = await getDocs(collection(db, "events"));
-    usersSnapshot.forEach((user) => {
+  // allow easily adding new users for demo & testing purposes.
+  const checkUser = async () => {
+    const docRef = doc(db, "users", USER.id);
+    const docSnap = await getDoc(docRef);
 
-    });
-    eventsSnapshot.forEach((doc) => {
-
-    });
+    if (!docSnap.exists()) {
+      const querySnapshot = await getDocs(collection(db, "users"));
+      await setDoc(doc(db, "users", USER.id), {
+        id: USER.id,
+        name: USER.name,
+        username: USER.username,
+        pronouns: USER.pronouns,
+        interests: USER.interests,
+        skills: USER.skills,
+        locations: USER.locations,
+        isReviewer: USER.isReviewer,
+        img: USER.img
+      });
+      console.log("new user created")
+    }
   };
 
+  useEffect(() => {
+    checkUser();
+  }, []);
 
   return (
     <NavigationContainer>

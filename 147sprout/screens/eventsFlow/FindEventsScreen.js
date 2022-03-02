@@ -3,8 +3,8 @@ import { Dropdown } from 'react-native-element-dropdown';
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
 
-import Interests from "../../consts/interests";
-import Locations from "../../consts/locations";
+import INTERESTS from "../../consts/interests";
+import LOCATIONS from "../../consts/locations";
 
 const SortBy = [
   {label: "Sort By: Interests", val: "Interests"},
@@ -30,21 +30,21 @@ export default function FindEventsScreen({ route, navigation }) {
 
     <Text style={{fontSize: 20}}>Sorting By</Text>
       {sort === "Interests" ?
-        Interests.map((interest, idx) => {
-          return <Pressable style={styles.sort} key = {idx}
-            onPress={() => {navigation.navigate(interest, {
-              eventList: allEvents.filter(item => item.interests.includes(interest)),
+        INTERESTS.map((interest, idx) => {
+          return <Pressable style={styles.sort} key = {interest.key}
+            onPress={() => {navigation.navigate(interest.val, {
+              eventList: allEvents.filter(item => item.interests.includes(interest.val) && item.status !== "draft"),
             })}}>
-            <Text> {interest} </Text>
+            <Text> {interest.val} </Text>
           </Pressable>
         })
         :
-        Locations.map((location, idx) => {
-          return <Pressable style={styles.sort} key = {idx}
-            onPress={() => {navigation.navigate(location, {
-              eventList: allEvents.filter(item => item.locations.includes(location)),
+        LOCATIONS.map((location, idx) => {
+          return <Pressable style={styles.sort} key = {location.key}
+            onPress={() => {navigation.navigate(location.val, {
+              eventList: allEvents.filter(item => item.locations.includes(location.val) && item.status !== "draft"),
             })}}>
-            <Text> {location} </Text>
+            <Text> {location.val} </Text>
           </Pressable>
         })
       }
@@ -65,6 +65,8 @@ const styles = StyleSheet.create({
     borderWidth:  1
   },
   dropdown: {
-    width: 300
+    width: '80%',
+    borderStyle: "solid",
+    borderWidth:  1
   }
 });
