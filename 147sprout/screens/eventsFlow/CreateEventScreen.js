@@ -62,6 +62,7 @@ export default function CreateEventScreen({ navigation }) {
       eventStart: eventStart.toString(),
       eventEnd: eventEnd.toString(),
       reviewers: eventReviewers,
+      numApproved: 0,
       status: "pending",
       id: currId
     });
