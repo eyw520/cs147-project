@@ -77,4 +77,30 @@ const jlanday = {
   img: "../assets/sampleProfile.png"
 }
 
-export default jlanday;
+const natyunqi = {
+  id: "user6",
+  name: "Natalie Ward",
+  username: "natyunqi",
+  pronouns: "She/Her",
+  groups: ["group0", "group4"],
+  interests: ["AAPI Rights", "Healthcare"],
+  locations: ["Oakland", "San Francisco", "Los Angeles"],
+  skills: ["skill1", "skill2"],
+  isReviewer: false,
+  img: "../assets/sampleProfile.png"
+}
+
+const shindrew = {
+  id: "user7",
+  name: "Andrew Shin",
+  username: "shindrew",
+  pronouns: "He/Him",
+  groups: ["group0", "group3", "group4"],
+  interests: ["AAPI Rights"],
+  locations: ["San Francisco", "Seattle"],
+  skills: ["skill3", "skill4"],
+  isReviewer: false,
+  img: "../assets/sampleProfile.png"
+}
+
+export default shindrew;

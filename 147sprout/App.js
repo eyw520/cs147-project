@@ -53,7 +53,7 @@ export default function App() {
     const querySnapshot = await getDocs(collection(db, "groups"));
     querySnapshot.forEach(async (group) => {
       if (USER.groups.includes(group.id) && !group.data().members.includes(USER.id)) {
-        await setDoc(doc(db, "groups", group.id), {
+        await updateDoc(doc(db, "groups", group.id), {
           members: [...group.data().members, USER.id]
         });
       }
