@@ -64,4 +64,17 @@ const yubin = {
   img: "../assets/sampleProfile.png"
 }
 
-export default jhclee;
+const jlanday = {
+  id: "user5",
+  name: "James Landay",
+  username: "jlanday",
+  pronouns: "He/Him",
+  groups: ["group0", "group2", "group4"],
+  interests: ["Healthcare", "Housing Justice"],
+  locations: ["Oakland", "San Francisco"],
+  skills: ["skill3", "skill4"],
+  isReviewer: false,
+  img: "../assets/sampleProfile.png"
+}
+
+export default jlanday;

@@ -3,8 +3,22 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome } from '@expo/vector-icons';
-import { collection, doc, getDocs, getDoc, setDoc } from "firebase/firestore";
+import { collection, doc, getDocs, getDoc, updateDoc, setDoc } from "firebase/firestore";
 import { db } from "./firebase";
+
+const updateAttendance = async () => {
+    const eventRef = doc(db, "events", eventData.id);
+    var index = eventData.attendees.indexOf(USER.id);
+    if (index > -1) {
+      eventData.attendees.splice(index, 1);
+    }
+    await updateDoc(eventRef, {
+      attendees: eventData.attendees
+    });
+    const eventSnap = await getDoc(eventRef);
+    console.log("update performed")
+    navigation.navigate("Events")
+  }
 
 import HomeStack from './stacks/HomeStack';
 import EventsStack from './stacks/EventsStack';
@@ -35,8 +49,20 @@ export default function App() {
     });
   };
 
+  const checkGroups = async () => {
+    const querySnapshot = await getDocs(collection(db, "groups"));
+    querySnapshot.forEach(async (group) => {
+      if (USER.groups.includes(group.id) && !group.data().members.includes(USER.id)) {
+        await setDoc(doc(db, "groups", group.id), {
+          members: [...group.data().members, USER.id]
+        });
+      }
+    })
+  }
+
   useEffect(() => {
     checkUser();
+    checkGroups();
   }, []);
 
   return (

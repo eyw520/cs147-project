@@ -23,6 +23,7 @@ export default function SocialScreen({ navigation }) {
   const getUserGroups = () => {
     setUserMemberGroups(allGroups.filter(item => item.members.includes(USER.id)))
     setUserDiscoverGroups(allGroups.filter(item => !item.members.includes(USER.id)))
+    console.log(userMemberGroups)
   };
 
   useEffect(() => {
