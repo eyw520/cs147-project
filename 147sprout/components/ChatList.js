@@ -13,7 +13,7 @@ export default function ChatList({ chats }) {
           chatData: item,
         })}}>
           {item.chatName === "" ?
-            <Text> Direct Message </Text>
+            <Text> Direct Message w/ {item.members.filter(item => item !== USER.id)[0]}</Text>
             :
             <Text> {item.chatName} </Text>
           }

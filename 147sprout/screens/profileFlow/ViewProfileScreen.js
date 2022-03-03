@@ -32,22 +32,22 @@ export default function ViewProfileScreen({ route, navigation }) {
   const removeFriend = async () => {
     const selfRef = doc(db, "users", USER.id);
     const selfSnap = await getDoc(selfRef)
-    var index = selfSnap.data().friends.indexOf(userData.id);
-    if (index > -1) {
-      selfSnap.data().friends.splice(index, 1);
+    const selfData = selfSnap.data()
+    let index1 = selfData.friends.indexOf(userData.id);
+    if (index1 > -1) {
+      selfData.friends.splice(index1, 1)
+      await updateDoc(doc(db, "users", USER.id), {
+        friends: selfData.friends
+      });
     }
-    await updateDoc(doc(db, "users", USER.id), {
-      friends: selfSnap.data().friends
-    });
-
     const userRef = doc(db, "users", userData.id);
-    var index = userData.friends.indexOf(userData.id);
-    if (index > -1) {
-      userData.friends.splice(index, 1);
+    let index2 = userData.friends.indexOf(USER.id);
+    if (index1 > -1) {
+      userData.friends.splice(index2, 1)
+      await updateDoc(doc(db, "users", userData.id), {
+        friends: userData.friends.splice(index2, 1)
+      });
     }
-    await updateDoc(doc(db, "users", userData.id), {
-      friends: userData.friends
-    });
     setIsFriend(false)
   }
 
@@ -55,9 +55,9 @@ export default function ViewProfileScreen({ route, navigation }) {
     let ls = []
     let ct = 0
     const chatsRef = collection(db, "chats");
-    let memberKey = [USER.id, userData.id].sort()
-    memberKey.sort((a, b) => b.id.charAt(-1) > a.id.charAt(-1))
-    const q = query(chatsRef, where("members", "==", [USER.id, userData.id]));
+    let memberKey = [USER.id, userData.id]
+    memberKey.sort((a, b) => b < a)
+    const q = query(chatsRef, where("members", "==", memberKey));
     const queryResults = await getDocs(q);
     queryResults.forEach((doc) => {
       ct += 1

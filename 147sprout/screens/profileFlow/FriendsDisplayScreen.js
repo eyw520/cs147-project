@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import FriendsList from "../../components/FriendsList";
 
 // provided in route a list of events, display to take up entire screen.
-export default function EventsDisplayScreen({ navigation, route }) {
+export default function FriendsDisplayScreen({ navigation, route }) {
   const { friends } = route.params;
 
   return (

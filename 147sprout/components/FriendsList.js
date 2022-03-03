@@ -18,7 +18,7 @@ export default function FriendsList({ friends }) {
       if (docSnap.exists()) {
         ls = [...ls, docSnap.data()]
       }
-      setProfiles(ls)
+      setProfiles(ls.sort((a, b) => b.name < a.name))
     });
   }
 
