@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View, TextInput, Pressable, SafeAreaView} from 'react-native';
+import { StyleSheet, Text, TextInput, Pressable, SafeAreaView} from 'react-native';
 import React, { useEffect, useState } from "react";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 
 import USER from "../../consts/user";
@@ -25,7 +25,6 @@ export default function EventRegistrationScreen({ route, navigation }) {
     await updateDoc(eventRef, {
       attendees: [...eventData.attendees, USER.id]
     });
-    console.log("update performed")
     navigation.navigate("Events")
   }
 

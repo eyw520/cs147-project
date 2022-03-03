@@ -1,9 +1,6 @@
-import { StyleSheet, Text, View, FlatList, Pressable, SafeAreaView } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { StyleSheet, Text, View, FlatList, SafeAreaView } from 'react-native';
 
 export default function GroupPosts({ posts }) {
-  const navigation = useNavigation();
-
   const renderItem = ({ item }) => {
     return (
       <View style={styles.container}>

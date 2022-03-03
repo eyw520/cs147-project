@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View, SafeAreaView, Pressable } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
-import React, { useEffect, useState } from "react";
-import { db } from "../../firebase";
+import React, { useState } from "react";
 
 import INTERESTS from "../../consts/interests";
 import LOCATIONS from "../../consts/locations";
@@ -13,7 +12,7 @@ const SortBy = [
 
 export default function FindEventsScreen({ route, navigation }) {
   const [sort, setSort] = useState("Interests")
-  const { allEvents, userAttending, userHosting } = route.params;
+  const { allEvents } = route.params;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -30,7 +29,7 @@ export default function FindEventsScreen({ route, navigation }) {
 
     <Text style={{fontSize: 20}}>Sorting By</Text>
       {sort === "Interests" ?
-        INTERESTS.map((interest, idx) => {
+        INTERESTS.map((interest) => {
           return <Pressable style={styles.sort} key = {interest.key}
             onPress={() => {navigation.navigate(interest.val, {
               eventList: allEvents.filter(item => item.interests.includes(interest.val) && item.status === "live"),
@@ -40,7 +39,7 @@ export default function FindEventsScreen({ route, navigation }) {
           </Pressable>
         })
         :
-        LOCATIONS.map((location, idx) => {
+        LOCATIONS.map((location) => {
           return <Pressable style={styles.sort} key = {location.key}
             onPress={() => {navigation.navigate(location.val, {
               eventList: allEvents.filter(item => item.locations.includes(location.val) && item.status === "live"),

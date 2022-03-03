@@ -1,24 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome } from '@expo/vector-icons';
 import { collection, doc, getDocs, getDoc, updateDoc, setDoc } from "firebase/firestore";
 import { db } from "./firebase";
-
-const updateAttendance = async () => {
-    const eventRef = doc(db, "events", eventData.id);
-    var index = eventData.attendees.indexOf(USER.id);
-    if (index > -1) {
-      eventData.attendees.splice(index, 1);
-    }
-    await updateDoc(eventRef, {
-      attendees: eventData.attendees
-    });
-    const eventSnap = await getDoc(eventRef);
-    console.log("update performed")
-    navigation.navigate("Events")
-  }
 
 import HomeStack from './stacks/HomeStack';
 import EventsStack from './stacks/EventsStack';
@@ -34,7 +20,6 @@ export default function App() {
     const docRef = doc(db, "users", USER.id);
     const docSnap = await getDoc(docRef);
     if (!docSnap.exists()) {
-      const querySnapshot = await getDocs(collection(db, "users"));
       await setDoc(doc(db, "users", USER.id), {
         id: USER.id,
         name: USER.name,
@@ -48,6 +33,7 @@ export default function App() {
         isReviewer: USER.isReviewer,
         img: USER.img
       });
+      console.log(`new user with id ${USER.id} created`)
     }
   };
 
@@ -71,7 +57,7 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
+          tabBarIcon: ({ color, size }) => {
             let iconName;
             if (route.name === 'HomeStack') {
               iconName = 'code'

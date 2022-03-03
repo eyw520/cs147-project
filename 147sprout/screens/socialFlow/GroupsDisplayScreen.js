@@ -1,10 +1,10 @@
-import { StyleSheet, Pressable, Text, View, FlatList, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, SafeAreaView } from 'react-native';
 import React, { useEffect, useState } from "react";
 
 import GroupList from "../../components/GroupList";
 
 // provided in route a list of groups, display to take up entire screen.
-export default function GroupsDisplayScreen({ navigation, route }) {
+export default function GroupsDisplayScreen({ route }) {
   const { groupList, title } = route.params;
 
   return (

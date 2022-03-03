@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, FlatList, Pressable, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from "react";
-import { collection, doc, getDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
 import USER from "../consts/user";

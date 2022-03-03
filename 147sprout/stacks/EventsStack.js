@@ -1,7 +1,5 @@
 import { Pressable, Text } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { TransitionPresets } from '@react-navigation/stack';
-import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 
 import EventsScreen from '../screens/eventsFlow/EventsScreen';

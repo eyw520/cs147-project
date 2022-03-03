@@ -1,10 +1,10 @@
-import { StyleSheet, Pressable, Text, View, FlatList, SafeAreaView } from 'react-native';
-import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import React from "react";
 
 import FriendsList from "../../components/FriendsList";
 
 // provided in route a list of events, display to take up entire screen.
-export default function FriendsDisplayScreen({ navigation, route }) {
+export default function FriendsDisplayScreen({ route }) {
   const { friends } = route.params;
 
   return (

@@ -16,7 +16,6 @@ export default function EventReviewScreen({ navigation }) {
     const q = query(eventsRef, where("reviewers", "array-contains", USER.id));
     const queryResults = await getDocs(q);
     queryResults.forEach((doc) => { ls = [...ls, doc.data()] });
-    console.log("read collection query performed.")
     setEventsForUserReview(ls.filter(item => item.status === "pending"))
   };
 

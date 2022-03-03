@@ -5,7 +5,7 @@ import { db } from "../../firebase"
 
 import USER from "../../consts/user";
 
-export default function HomeScreen({ route, navigation }) {
+export default function HomeScreen({ navigation }) {
   const [userFlowers, setUserFlowers] = useState([])
   const [currFlower, setCurrFlower] = useState(undefined)
 
@@ -15,7 +15,6 @@ export default function HomeScreen({ route, navigation }) {
     const q = query(gardenRef, where("user", "==", USER.id));
     const queryResults = await getDocs(q);
     queryResults.forEach((doc) => { ls = [...ls, doc.data()] });
-    console.log("read collection query performed.")
     setUserFlowers(ls)
     if (ls !== []) {
       setCurrFlower(ls.filter(item => item.state == "growing")[0])

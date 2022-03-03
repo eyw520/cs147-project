@@ -1,9 +1,7 @@
-import { StyleSheet, Text, View, TextInput, Pressable, SafeAreaView} from 'react-native';
+import { StyleSheet, Text, View, Pressable, SafeAreaView} from 'react-native';
 import React, { useState } from "react";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
-
-import USER from "../../consts/user";
 
 export default function EventDeletionScreen({ route, navigation }) {
   const [confirm, setConfirm] = useState(false);
@@ -15,7 +13,6 @@ export default function EventDeletionScreen({ route, navigation }) {
       status: "cancelled"
     });
     const eventSnap = await getDoc(eventRef);
-    console.log("update performed")
     navigation.navigate("Events")
   }
 

@@ -1,14 +1,14 @@
-import { StyleSheet, Button, Pressable, Image, Text, View, SafeAreaView } from 'react-native';
+import { StyleSheet, Pressable, Text, View, SafeAreaView } from 'react-native';
 import React, { useEffect, useCallback, useState } from "react";
 import { db } from "../../firebase";
-import { collection, doc, setDoc, getDoc, getDocs, updateDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, updateDoc } from "firebase/firestore";
 
 import GroupPosts from "../../components/GroupPosts"
 import GroupMembers from "../../components/GroupMembers"
 
 import USER from "../../consts/user";
 
-export default function GroupInformationScreen({ route, navigation }) {
+export default function GroupInformationScreen({ route }) {
   const { data } = route.params
   const [currTab, setCurrTab] = useState("FEED")
   const [groupData, setGroupData] = useState(data)
@@ -31,7 +31,6 @@ export default function GroupInformationScreen({ route, navigation }) {
       members: [...groupData.members, USER.id]
     });
     getGroupData()
-    console.log("update performed")
   }
 
   const leaveGroup = async () => {
@@ -43,7 +42,6 @@ export default function GroupInformationScreen({ route, navigation }) {
       members: groupData.members
     });
     getGroupData()
-    console.log("update performed")
   }
 
   useEffect(() => {

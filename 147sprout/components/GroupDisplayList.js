@@ -1,11 +1,8 @@
-import { StyleSheet, Text, View, FlatList, Pressable, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, FlatList, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import USER from "../consts/user";
-
 export default function GroupDisplayList({ groups }) {
-  const navigation = useNavigation();
-
+  
   const renderItem = ({ item }) => {
     return (
       <View style={styles.container}>

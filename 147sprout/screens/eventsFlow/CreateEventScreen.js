@@ -24,7 +24,6 @@ export default function CreateEventScreen({ navigation }) {
   const [eventReviewers, setEventReviewers] = useState([])
   const [eventLocations, setEventLocations] = useState([])
   const [eventInterests, setEventInterests] = useState([])
-  const [eventImg, setEventImg] = useState("")
 
   const [confirm, setConfirm] = useState(false)
   const [enableSubmit, setEnableSubmit] = useState(false)
@@ -159,7 +158,6 @@ export default function CreateEventScreen({ navigation }) {
         onConfirm={(date) => {
           setEventStart(date)
           setOpenStart(false)
-          console.log(date)
         }}
         onCancel={() => setOpenStart(false)}
       />
@@ -174,7 +172,6 @@ export default function CreateEventScreen({ navigation }) {
         onConfirm={(date) => {
           setEventEnd(date)
           setOpenEnd(false)
-          console.log(date)
         }}
         onCancel={() => setOpenEnd(false)}
       />

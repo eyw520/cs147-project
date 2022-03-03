@@ -1,8 +1,6 @@
 import { StyleSheet, Text, View, FlatList, Pressable, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import USER from "../consts/user";
-
 export default function GroupList({ groups }) {
   const navigation = useNavigation();
 

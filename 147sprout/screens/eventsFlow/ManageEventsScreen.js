@@ -20,7 +20,6 @@ export default function ManageEventsScreen({ navigation }) {
     const q = query(eventsRef, where("host", "==", USER.id));
     const queryResults = await getDocs(q);
     queryResults.forEach((doc) => { ls = [...ls, doc.data()] });
-    console.log("read collection query performed.")
     setAllUserEvents(ls)
   };
 

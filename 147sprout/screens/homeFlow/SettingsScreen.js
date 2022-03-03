@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, SafeAreaView } from 'react-native';
 
-export default function SettingsScreen({ route, navigation }) {
+export default function SettingsScreen() {
 
   return (
     <SafeAreaView style={styles.container}>

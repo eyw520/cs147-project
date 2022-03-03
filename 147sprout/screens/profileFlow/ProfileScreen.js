@@ -5,18 +5,16 @@ import { doc, getDoc } from "firebase/firestore";
 
 import USER from "../../consts/user";
 
-export default function ProfileScreen({ route, navigation }) {
+export default function ProfileScreen({ navigation }) {
   const [userData, setUserData] = useState({})
   const [userInterests, setUserInterests] = useState([])
   const [userLocations, setUserLocations] = useState([])
   const [userSkills, setUserSkills] = useState([])
   const [userFriends, setUserFriends] = useState([])
-  const [userFriendRequests, setUserFriendRequests] = useState([])
 
   const getProfile = async () => {
     const profileRef = doc(db, "users", USER.id);
     const profileSnap = await getDoc(profileRef);
-    console.log("read query performed.")
     if (profileSnap.exists()) {
       let data = profileSnap.data()
       setUserData(data)
@@ -24,9 +22,6 @@ export default function ProfileScreen({ route, navigation }) {
       setUserLocations(data.locations)
       setUserSkills(data.skills)
       setUserFriends(data.friends)
-      setUserFriendRequests(data.friendRequests)
-    } else {
-      console.log("unable to retrieve user profile.")
     }
   };
 

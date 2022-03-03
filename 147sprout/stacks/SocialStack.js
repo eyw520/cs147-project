@@ -1,6 +1,5 @@
 import { Pressable, Text } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { TransitionPresets } from '@react-navigation/stack';
 import { FontAwesome } from '@expo/vector-icons';
 
 import SocialScreen from '../screens/socialFlow/SocialScreen';

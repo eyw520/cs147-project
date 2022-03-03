@@ -1,10 +1,10 @@
-import { StyleSheet, Pressable, Text, View, FlatList, SafeAreaView } from 'react-native';
-import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import React from "react";
 
 import EventList from "../../components/EventList";
 
 // provided in route a list of events, display to take up entire screen.
-export default function EventsDisplayScreen({ navigation, route }) {
+export default function EventsDisplayScreen({ route }) {
   const { eventList, title } = route.params;
 
   return (

@@ -1,7 +1,5 @@
 import { Pressable, Text } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { TransitionPresets } from '@react-navigation/stack';
-import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 
 import HomeScreen from '../screens/homeFlow/HomeScreen';
@@ -16,7 +14,7 @@ import SettingsScreen from '../screens/homeFlow/SettingsScreen';
 
 const Stack = createStackNavigator();
 
-export default function HomeStack({ route, navigation }) {
+export default function HomeStack({ navigation }) {
 
   return (
     <Stack.Navigator

@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, SafeAreaView } from 'react-native';
 
-export default function EditProfileScreen({ navigation }) {
+export default function EditProfileScreen() {
 
   return (
     <SafeAreaView style={styles.container}>

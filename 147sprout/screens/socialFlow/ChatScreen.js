@@ -1,10 +1,9 @@
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { StyleSheet } from 'react-native';
 import React, { useEffect, useCallback, useState } from "react";
 import { GiftedChat } from 'react-native-gifted-chat'
 import { db } from "../../firebase";
-import { collection, query, where, doc, setDoc, getDocs, updateDoc } from "firebase/firestore";
+import { collection, doc, setDoc, getDocs, updateDoc } from "firebase/firestore";
 
-import ChatList from "../../components/ChatList";
 import USER from "../../consts/user";
 
 export default function ChatScreen({ route, navigation }) {
@@ -21,7 +20,6 @@ export default function ChatScreen({ route, navigation }) {
         user: message.data().user,
         createdAt: message.data().createdAt.toDate()}]
     });
-    console.log("read collection query performed.")
     setMessages(ls)
   };
 

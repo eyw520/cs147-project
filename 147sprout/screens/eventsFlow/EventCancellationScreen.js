@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, Pressable, SafeAreaView} from 'react-native';
+import { StyleSheet, Text, View, Pressable, SafeAreaView} from 'react-native';
 import React, { useState } from "react";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
@@ -19,7 +19,6 @@ export default function EventRegistrationScreen({ route, navigation }) {
       attendees: eventData.attendees
     });
     const eventSnap = await getDoc(eventRef);
-    console.log("update performed")
     navigation.navigate("Events")
   }
 

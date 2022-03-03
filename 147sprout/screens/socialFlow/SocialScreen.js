@@ -14,7 +14,6 @@ export default function SocialScreen({ navigation }) {
 
   const getAllGroups = async () => {
     const querySnapshot = await getDocs(collection(db, "groups"));
-    console.log("read collection query performed.")
     let ls = []
     querySnapshot.forEach((doc) => { ls = [...ls, doc.data()] });
     setAllGroups(ls)

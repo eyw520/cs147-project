@@ -1,10 +1,10 @@
-import { StyleSheet, Pressable, Text, View, FlatList, SafeAreaView } from 'react-native';
-import React, { useEffect, useState } from "react";
+import { StyleSheet, SafeAreaView } from 'react-native';
+import React from "react";
 
 import FlowerList from "../../components/FlowerList";
 
 // provided in route a list of flowers, display to take up entire screen.
-export default function YourGardenScreen({ navigation, route }) {
+export default function YourGardenScreen({ route }) {
   const { flowers } = route.params;
 
   return (

@@ -14,7 +14,6 @@ export default function EventsScreen({ navigation }) {
 
   const getAllEvents = async () => {
     const querySnapshot = await getDocs(collection(db, "events"));
-    console.log("read collection query performed.")
     let ls = []
     querySnapshot.forEach((doc) => { ls = [...ls, doc.data()] });
     setAllEvents(ls)

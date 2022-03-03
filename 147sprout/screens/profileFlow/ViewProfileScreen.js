@@ -65,7 +65,6 @@ export default function ViewProfileScreen({ route, navigation }) {
     if (ct === 0) {
       const querySnapshot = await getDocs(collection(db, "chats"));
       let currId = `chat${querySnapshot.size}`
-      console.log(currId)
       await setDoc(doc(db, "chats", currId), {
         id: currId,
         members: [USER.id, userData.id],

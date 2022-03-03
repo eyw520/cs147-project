@@ -1,4 +1,4 @@
-import { StyleSheet, Button, Text, TextInput, View, SafeAreaView, Pressable } from 'react-native';
+import { StyleSheet, Text, TextInput, View, SafeAreaView, Pressable } from 'react-native';
 import React, { useEffect, useState } from "react";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
@@ -17,7 +17,6 @@ export default function EventInformationScreen({ route, navigation }) {
     await eventData.attendees.forEach(async (item) => {
       const docRef = doc(db, "users", item);
       const docSnap = await getDoc(docRef);
-      console.log("read query performed.");
       if (docSnap.exists()) {
         obj = {
           id: docSnap.data().id,
@@ -28,8 +27,6 @@ export default function EventInformationScreen({ route, navigation }) {
         ls2 = [...ls2, obj]
         setAttendees(ls1)
         setAttendeeData(ls2)
-      } else {
-        console.log("user not found");
       }
     });
   };
@@ -48,7 +45,6 @@ export default function EventInformationScreen({ route, navigation }) {
       });
     }
     const eventSnap = await getDoc(eventRef);
-    console.log("update performed")
     navigation.navigate("Manage Events")
   }
 
@@ -58,7 +54,6 @@ export default function EventInformationScreen({ route, navigation }) {
       status: "rejected",
       message: message
     });
-    console.log("update performed")
     navigation.navigate("Manage Events")
   }
 
@@ -68,7 +63,6 @@ export default function EventInformationScreen({ route, navigation }) {
       status: "deleted",
       message: message
     });
-    console.log("update performed")
     navigation.navigate("Manage Events")
   }
 

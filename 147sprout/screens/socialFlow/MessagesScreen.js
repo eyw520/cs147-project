@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, SafeAreaView } from 'react-native';
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
