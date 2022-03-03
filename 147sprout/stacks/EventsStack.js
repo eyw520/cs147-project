@@ -122,6 +122,7 @@ export default function EventsStack({ navigation }) {
       <Stack.Screen name="Feminism" component={EventsDisplayScreen} />
       <Stack.Screen name="Healthcare" component={EventsDisplayScreen} />
       <Stack.Screen name="Housing Justice" component={EventsDisplayScreen} />
+      <Stack.Screen name="Virtual" component={EventsDisplayScreen} />
 
       <Stack.Screen name="New York City" component={EventsDisplayScreen} />
       <Stack.Screen name="San Francisco" component={EventsDisplayScreen} />
