@@ -111,4 +111,4 @@ const shindrew = {
   img: "sampleProfile.png"
 }
 
-export default jhclee;
+export default eyw;
