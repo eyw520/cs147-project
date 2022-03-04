@@ -17,6 +17,8 @@ import FriendsDisplayScreen from '../screens/profileFlow/FriendsDisplayScreen';
 const Stack = createStackNavigator();
 
 export default function SocialStack({ navigation }) {
+  let size = 16;
+  let color = Colors.gray;
 
   return (
     <Stack.Navigator
