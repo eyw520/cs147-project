@@ -15,6 +15,10 @@
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
 		E25EFC71F9FF4CF2AA44AA46 /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE0A0D8F9B44E9AA2C3494B /* noop-file.swift */; };
+		FDECE3B5FAD94D1DB09DAAC9 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46423C61BC58489289F0769B /* Inter-Bold.ttf */; };
+		5FD4BD918EE544D1BF14A75E /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 41372DA3E7B54DF08B1D4830 /* Inter-Light.ttf */; };
+		1D54F87FB39E43BF842CB13B /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1645F2F5495E4E24B06DDF3F /* Inter-Regular.ttf */; };
+		86C100BAF4F34690ABD696F9 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EFC0CDAC5E194DD5BCD0E18E /* Inter-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-147sprout/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		6DE0A0D8F9B44E9AA2C3494B /* noop-file.swift */ = {isa = PBXFileReference; name = "noop-file.swift"; path = "147sprout/noop-file.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
 		C61662CC3F7D453AAAA67DA9 /* 147sprout-Bridging-Header.h */ = {isa = PBXFileReference; name = "147sprout-Bridging-Header.h"; path = "147sprout/147sprout-Bridging-Header.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		46423C61BC58489289F0769B /* Inter-Bold.ttf */ = {isa = PBXFileReference; name = "Inter-Bold.ttf"; path = "../assets/fonts/Inter-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		41372DA3E7B54DF08B1D4830 /* Inter-Light.ttf */ = {isa = PBXFileReference; name = "Inter-Light.ttf"; path = "../assets/fonts/Inter-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1645F2F5495E4E24B06DDF3F /* Inter-Regular.ttf */ = {isa = PBXFileReference; name = "Inter-Regular.ttf"; path = "../assets/fonts/Inter-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EFC0CDAC5E194DD5BCD0E18E /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; name = "Inter-SemiBold.ttf"; path = "../assets/fonts/Inter-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +98,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D65327D7A22EEC0BE12398D9 /* Pods */,
 				D7E4C46ADA2E9064B798F356 /* ExpoModulesProviders */,
+				DBF854B4074D4BC68EC20A64 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -137,6 +146,18 @@
 			);
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";
+		};
+		DBF854B4074D4BC68EC20A64 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				46423C61BC58489289F0769B /* Inter-Bold.ttf */,
+				41372DA3E7B54DF08B1D4830 /* Inter-Light.ttf */,
+				1645F2F5495E4E24B06DDF3F /* Inter-Regular.ttf */,
+				EFC0CDAC5E194DD5BCD0E18E /* Inter-SemiBold.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -202,6 +223,10 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
 				29D5F72FE5A744E686292585 /* 147sprout-Bridging-Header.h in Resources */,
+				FDECE3B5FAD94D1DB09DAAC9 /* Inter-Bold.ttf in Resources */,
+				5FD4BD918EE544D1BF14A75E /* Inter-Light.ttf in Resources */,
+				1D54F87FB39E43BF842CB13B /* Inter-Regular.ttf in Resources */,
+				86C100BAF4F34690ABD696F9 /* Inter-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

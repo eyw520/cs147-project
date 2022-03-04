@@ -1,5 +1,6 @@
 import { StyleSheet, Text, SafeAreaView } from 'react-native';
 import React, { useEffect, useState } from "react";
+import { Colors, Layout, Typography } from "../../styles";
 
 import GroupList from "../../components/GroupList";
 
@@ -17,10 +18,7 @@ export default function GroupsDisplayScreen({ route }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
-  }
+    ...Layout.container,
+    backgroundColor: Colors.white
+  },
 });

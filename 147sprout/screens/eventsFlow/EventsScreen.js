@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
 
+import { Colors, Layout, Typography } from "../../styles";
 import EventList from "../../components/EventList";
 
 import USER from "../../consts/user";
@@ -39,7 +40,6 @@ export default function EventsScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-
       <View style={styles.container}>
         <Text style={{fontSize: 20}}> Events You're Attending </Text>
         <EventList events={userAttending} />
@@ -66,19 +66,10 @@ export default function EventsScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 4,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
-    paddingTop: 10,
-    paddingBottom: 10
+    ...Layout.container,
   },
   button: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
+    ...Layout.container,
+    flex: .4
   }
 });

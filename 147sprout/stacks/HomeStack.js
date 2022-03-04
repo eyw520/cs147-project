@@ -1,7 +1,8 @@
-import { Pressable, Text } from 'react-native';
+import { Pressable, Text, StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 
+import { Colors, Layout, Typography } from "../styles";
 import HomeScreen from '../screens/homeFlow/HomeScreen';
 import ProfileScreen from '../screens/profileFlow/ProfileScreen';
 import EditProfileScreen from '../screens/profileFlow/EditProfileScreen';
@@ -15,33 +16,31 @@ import SettingsScreen from '../screens/homeFlow/SettingsScreen';
 const Stack = createStackNavigator();
 
 export default function HomeStack({ navigation }) {
+  let size = 16;
+  let color = Colors.gray;
 
   return (
     <Stack.Navigator
       screenOptions= {() => ({
         headerShown: true,
       })}>
-      <Stack.Screen name="Home" component={HomeScreen}
+      <Stack.Screen name="HomeScreen" component={HomeScreen}
         options={() => ({
           title: 'Home',
           headerLeft: () => (
             <Pressable
               onPress={() => navigation.navigate('Home Profile')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome name="code" size={30} color="gray" />
-              <Text> Profile </Text>
+              style={styles.container}>
+              <FontAwesome5 name="user-alt" size={size} color={color} />
+              <Text style={styles.small}>Profile</Text>
             </Pressable>
           ),
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Settings')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome name="code" size={30} color="gray" />
-              <Text> Settings </Text>
+              style={styles.container}>
+              <FontAwesome5 name="cog" size={size} color={color} />
+              <Text style={styles.small}>Settings</Text>
             </Pressable>
           ),
         })}
@@ -52,11 +51,9 @@ export default function HomeStack({ navigation }) {
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Home Edit Profile')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome name="code" size={30} color="gray" />
-              <Text> Edit </Text>
+              style={styles.container}>
+              <FontAwesome5 name="code" size={size} color={color} />
+              <Text style={styles.small}> Edit </Text>
             </Pressable>
           ),
         })}
@@ -75,3 +72,15 @@ export default function HomeStack({ navigation }) {
     </Stack.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    ...Layout.container,
+    backgroundColor: Colors.white
+  },
+  small: {
+    ...Typography.small,
+    color: Colors.gray,
+    marginVertical: 4
+  }
+});

@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, SafeAreaView, Pressable } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import React, { useState } from "react";
+import { Colors, Layout, Typography } from "../../styles";
 
 import INTERESTS from "../../consts/interests";
 import LOCATIONS from "../../consts/locations";

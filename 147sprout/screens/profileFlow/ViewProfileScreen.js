@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Modal from "react-native-modal";
 import { db } from "../../firebase";
 import { collection, doc, getDoc, setDoc, getDocs, query, where, updateDoc } from "firebase/firestore";
+import { Colors, Layout, Typography } from "../../styles";
 
 import USER from "../../consts/user";
 
@@ -166,10 +167,7 @@ export default function ViewProfileScreen({ route, navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
-  }
+    ...Layout.container,
+    backgroundColor: Colors.white
+  },
 });

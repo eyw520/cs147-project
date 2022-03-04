@@ -1,5 +1,6 @@
 import { StyleSheet, Text, SafeAreaView } from 'react-native';
 import React from "react";
+import { Colors, Layout, Typography } from "../../styles";
 
 import FriendsList from "../../components/FriendsList";
 
@@ -21,10 +22,7 @@ export default function FriendsDisplayScreen({ route }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
-  }
+    ...Layout.container,
+    backgroundColor: Colors.white
+  },
 });

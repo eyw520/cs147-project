@@ -1,7 +1,8 @@
-import { Pressable, Text } from 'react-native';
+import { Pressable, Text, StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 
+import { Colors, Layout, Typography } from "../styles";
 import EventsScreen from '../screens/eventsFlow/EventsScreen';
 import EventInformationScreen from '../screens/eventsFlow/EventInformationScreen';
 import ManageEventsScreen from '../screens/eventsFlow/ManageEventsScreen';
@@ -24,27 +25,21 @@ export default function EventsStack({ navigation }) {
       screenOptions= {() => ({
         headerShown: true,
       })}>
-      <Stack.Screen name="Events" component={EventsScreen}
+      <Stack.Screen name="EventsScreen" component={EventsScreen}
         options={() => ({
           title: 'Events',
           headerLeft: () => (
             <Pressable
               onPress={() => navigation.navigate('Manage Events')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome name="code" size={30} color="gray" />
-              <Text> Manage </Text>
+              style={styles.container}>
+              <Text style={styles.small}>Manage</Text>
             </Pressable>
           ),
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Create Events')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome name="code" size={30} color="gray" />
-              <Text> Create </Text>
+              style={styles.container}>
+              <Text style={styles.small}>Create</Text>
             </Pressable>
           ),
         })}
@@ -130,3 +125,17 @@ export default function EventsStack({ navigation }) {
     </Stack.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    ...Layout.container,
+    backgroundColor: Colors.white
+  },
+  small: {
+    ...Typography.small,
+    fontSize: 11,
+    lineHeight: 11,
+    color: Colors.gray,
+    marginVertical: 4
+  }
+});

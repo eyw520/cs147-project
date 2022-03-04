@@ -1,7 +1,8 @@
-import { Pressable, Text } from 'react-native';
+import { Pressable, Text, StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 
+import { Colors, Layout, Typography } from "../styles";
 import SocialScreen from '../screens/socialFlow/SocialScreen';
 import GroupInformationScreen from '../screens/socialFlow/GroupInformationScreen';
 import GroupsDisplayScreen from '../screens/socialFlow/GroupsDisplayScreen';
@@ -22,27 +23,23 @@ export default function SocialStack({ navigation }) {
       screenOptions= {() => ({
         headerShown: true,
       })}>
-      <Stack.Screen name="Social" component={SocialScreen}
+      <Stack.Screen name="SocialScreen" component={SocialScreen}
         options={() => ({
           title: 'Social',
           headerLeft: () => (
             <Pressable
               onPress={() => navigation.navigate('Social Profile')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome name="code" size={30} color="gray" />
-              <Text> Profile </Text>
+              style={styles.container}>
+              <FontAwesome5 name="user-alt" size={size} color={color} />
+              <Text style={styles.small}>Profile</Text>
             </Pressable>
           ),
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Messages')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome name="code" size={30} color="gray" />
-              <Text> Chats </Text>
+              style={styles.container}>
+              <FontAwesome5 name="code" size={size} color={color} />
+              <Text style={styles.small}>Chats</Text>
             </Pressable>
           ),
         })}
@@ -86,3 +83,15 @@ export default function SocialStack({ navigation }) {
     </Stack.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    ...Layout.container,
+    backgroundColor: Colors.white
+  },
+  small: {
+    ...Typography.small,
+    color: Colors.gray,
+    marginVertical: 4
+  }
+});

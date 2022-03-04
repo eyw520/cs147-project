@@ -2,6 +2,7 @@ import { StyleSheet, Text, TextInput, Pressable, SafeAreaView} from 'react-nativ
 import React, { useEffect, useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
+import { Colors, Layout, Typography } from "../../styles";
 
 import USER from "../../consts/user";
 

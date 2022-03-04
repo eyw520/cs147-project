@@ -1,6 +1,7 @@
 import { StyleSheet, Text, SafeAreaView } from 'react-native';
 import React from "react";
 
+import { Colors, Layout, Typography } from "../../styles";
 import EventList from "../../components/EventList";
 
 // provided in route a list of events, display to take up entire screen.
@@ -17,10 +18,7 @@ export default function EventsDisplayScreen({ route }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
-  }
+    ...Layout.container,
+    backgroundColor: Colors.white
+  },
 });

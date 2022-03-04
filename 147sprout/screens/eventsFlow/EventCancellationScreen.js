@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Pressable, SafeAreaView} from 'react-native';
 import React, { useState } from "react";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
+import { Colors, Layout, Typography } from "../../styles";
 
 import USER from "../../consts/user";
 

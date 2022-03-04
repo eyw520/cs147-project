@@ -2,6 +2,7 @@ import { StyleSheet, Pressable, Text, View, SafeAreaView } from 'react-native';
 import React, { useEffect, useCallback, useState } from "react";
 import { db } from "../../firebase";
 import { collection, doc, getDoc, getDocs, updateDoc } from "firebase/firestore";
+import { Colors, Layout, Typography } from "../../styles";
 
 import GroupPosts from "../../components/GroupPosts"
 import GroupMembers from "../../components/GroupMembers"

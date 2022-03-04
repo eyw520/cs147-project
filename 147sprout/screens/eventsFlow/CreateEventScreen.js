@@ -5,6 +5,7 @@ import Modal from "react-native-modal";
 import React, { useEffect, useState } from "react";
 import { collection, doc, setDoc, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
+import { Colors, Layout, Typography } from "../../styles";
 
 import INTERESTS from "../../consts/interests";
 import LOCATIONS from "../../consts/locations";

@@ -1,5 +1,6 @@
 import { StyleSheet, Text, SafeAreaView } from 'react-native';
 import React from "react";
+import { Colors, Layout, Typography } from "../../styles";
 
 export default function YourGardenScreen({ route }) {
   const { flowerData } = route.params;
@@ -16,10 +17,7 @@ export default function YourGardenScreen({ route }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
-  }
+    ...Layout.container,
+    backgroundColor: Colors.white
+  },
 });

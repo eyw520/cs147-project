@@ -1,7 +1,8 @@
-import { StyleSheet, Text, View, Pressable, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Pressable, SafeAreaView, Image } from 'react-native';
 import React, { useEffect, useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from "../../firebase"
+import { db } from "../../firebase";
+import { Colors, Layout, Typography } from "../../styles";
 
 import USER from "../../consts/user";
 
@@ -28,10 +29,10 @@ export default function HomeScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
-        <Text style={{fontSize: 20}}>
+        <Text style={styles.subheader}>
           Welcome back to Sprout, {USER.name}!
         </Text>
-        <Text>
+        <Text style={styles.body}>
           Select a tab below to explore.
         </Text>
       </View>
@@ -50,7 +51,7 @@ export default function HomeScreen({ navigation }) {
           </Pressable>
         </View>
         :
-        <Text style={styles.smallGarden}> You have no plants in the garden — attend events to receive flowers from organizers! </Text>
+        <Text style={[styles.smallGarden, styles.body]}>You have no plants in the garden — attend events to receive flowers from organizers!</Text>
       }
     </SafeAreaView>
   )
@@ -58,17 +59,22 @@ export default function HomeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 4,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
+    ...Layout.container
+  },
+  header: {
+    ...Typography.header
+  },
+  subheader: {
+    ...Typography.subheader
+  },
+  body: {
+    ...Typography.body
   },
   smallGarden: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
+    ...Layout.container,
+    flex: 0.25
+  },
+  image: {
+    marginVertical: 20
   }
 });

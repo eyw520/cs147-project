@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, FlatList, Pressable, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Colors, Layout, Typography } from "../styles";
 
 export default function EventList({ events }) {
   const navigation = useNavigation();
@@ -11,9 +12,9 @@ export default function EventList({ events }) {
           eventData: item,
         })}}>
           <View key={item.id}>
-            <Text> {item.eventName}, {item.eventAddress} </Text>
-            <Text> {item.eventDescription} </Text>
-            <Text> {item.eventStart}, {item.eventEnd} </Text>
+            <Text style={styles.subheader}>{item.eventName}, {item.eventAddress}</Text>
+            <Text style={styles.body}>{item.eventDescription}</Text>
+            <Text style={styles.small}>{item.eventStart}, {item.eventEnd}</Text>
           </View>
         </Pressable>
       </View>
@@ -33,12 +34,16 @@ export default function EventList({ events }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
-    borderStyle: "solid",
-    borderWidth:  1
+    ...Layout.container,
   },
+  body: {
+    ...Typography.smallBody
+  },
+  subheader: {
+    ...Typography.smallBody,
+    fontWeight: "600"
+  },
+  small: {
+    ...Typography.small
+  }
 });

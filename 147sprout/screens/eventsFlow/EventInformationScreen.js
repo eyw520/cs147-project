@@ -2,6 +2,7 @@ import { StyleSheet, Text, TextInput, View, SafeAreaView, Pressable } from 'reac
 import React, { useEffect, useState } from "react";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
+import { Colors, Layout, Typography } from "../../styles";
 
 import USER from "../../consts/user";
 

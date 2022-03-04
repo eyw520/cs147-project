@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import { collection, doc, getDocs, getDoc, updateDoc, setDoc } from "firebase/firestore";
 import { db } from "./firebase";
+import { Colors, Layout, Typography } from "./styles";
 
 import HomeStack from './stacks/HomeStack';
 import EventsStack from './stacks/EventsStack';
@@ -57,25 +58,26 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
-          tabBarIcon: ({ color, size }) => {
+          tabBarIcon: ({ color }) => {
             let iconName;
-            if (route.name === 'HomeStack') {
-              iconName = 'code'
-            } else if (route.name === 'EventsStack') {
-              iconName = 'code'
-            } else if (route.name === 'SocialStack') {
-              iconName = 'code'
+            if (route.name === 'Home') {
+              iconName = 'home'
+            } else if (route.name === 'Events') {
+              iconName = 'calendar'
+            } else if (route.name === 'Social') {
+              iconName = 'users'
             }
-            return <FontAwesome name={iconName} size={size} color={color} />;
+            return <FontAwesome5 name={iconName} size={20} color={color} />;
           },
-          tabBarActiveTintColor: 'black',
-          tabBarInactiveTintColor: 'gray',
+          tabBarActiveTintColor: Colors.black,
+          tabBarInactiveTintColor: Colors.gray,
+          tabBarLabelStyle: styles.small,
           headerShown: false,
         })}
       >
-        <Tab.Screen name="HomeStack" component={HomeStack} />
-        <Tab.Screen name="EventsStack" component={EventsStack} />
-        <Tab.Screen name="SocialStack" component={SocialStack} />
+        <Tab.Screen name="Home" component={HomeStack} />
+        <Tab.Screen name="Events" component={EventsStack} />
+        <Tab.Screen name="Social" component={SocialStack} />
       </Tab.Navigator>
     </NavigationContainer>
   );
@@ -83,9 +85,10 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    ...Layout.container,
+    backgroundColor: Colors.white
   },
+  small: {
+    ...Typography.small
+  }
 });

@@ -1,4 +1,5 @@
 import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import { Colors, Layout, Typography } from "../../styles";
 
 export default function SettingsScreen() {
 
@@ -12,10 +13,7 @@ export default function SettingsScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
-  }
+    ...Layout.container,
+    backgroundColor: Colors.white
+  },
 });

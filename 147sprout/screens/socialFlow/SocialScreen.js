@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, SafeAreaView, Pressable } from 'react-native';
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
+import { Colors, Layout, Typography } from "../../styles";
 
 import GroupList from "../../components/GroupList";
 
@@ -66,10 +67,7 @@ export default function SocialScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
-  }
+    ...Layout.container,
+    backgroundColor: Colors.white
+  },
 });

@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, SafeAreaView} from 'react-native';
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
+import { Colors, Layout, Typography } from "../../styles";
 
 import EventList from "../../components/EventList";
 
@@ -70,10 +71,7 @@ export default function ManageEventsScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
-  }
+    ...Layout.container,
+    backgroundColor: Colors.white
+  },
 });

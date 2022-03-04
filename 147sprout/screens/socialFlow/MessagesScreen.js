@@ -2,6 +2,7 @@ import { StyleSheet, Text, SafeAreaView } from 'react-native';
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
+import { Colors, Layout, Typography } from "../../styles";
 
 import ChatList from "../../components/ChatList";
 import USER from "../../consts/user";
@@ -40,10 +41,7 @@ export default function MessagesScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
-  }
+    ...Layout.container,
+    backgroundColor: Colors.white
+  },
 });

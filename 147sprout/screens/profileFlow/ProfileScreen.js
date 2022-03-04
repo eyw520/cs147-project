@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Pressable, SafeAreaView } from 'react-native';
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import { doc, getDoc } from "firebase/firestore";
+import { Colors, Layout, Typography } from "../../styles";
 
 import USER from "../../consts/user";
 
@@ -72,10 +73,7 @@ export default function ProfileScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
-  }
+    ...Layout.container,
+    backgroundColor: Colors.white
+  },
 });

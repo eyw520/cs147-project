@@ -3,6 +3,7 @@ import React, { useEffect, useCallback, useState } from "react";
 import { GiftedChat } from 'react-native-gifted-chat'
 import { db } from "../../firebase";
 import { collection, doc, setDoc, getDocs, updateDoc } from "firebase/firestore";
+import { Colors, Layout, Typography } from "../../styles";
 
 import USER from "../../consts/user";
 
