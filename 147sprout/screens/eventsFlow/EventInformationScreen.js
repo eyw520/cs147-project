@@ -82,26 +82,26 @@ export default function EventInformationScreen({ route, navigation }) {
   return (
       <SafeAreaView style={styles.container}>
         <View style={styles.container}>
-          <Text> {eventData.eventName} </Text>
-          <Text> {eventData.eventStart}, {eventData.eventEnd} </Text>
-          <Text> {eventData.eventAddress} </Text>
-          <Text> {eventData.eventDescription} </Text>
+          <Text style={styles.subheader}>{eventData.eventName}</Text>
+          <Text style={styles.small}>{eventData.eventStart}, {eventData.eventEnd}</Text>
+          <Text style={styles.subheader}>{eventData.eventAddress}</Text>
+          <Text style={styles.body}>{eventData.eventDescription}</Text>
         </View>
 
         <View style={styles.container}>
-          <Text> Who else is attending: </Text>
+          <Text>Who else is attending:</Text>
           {attendeeData.map((attendee, idx) => {
             return <View key = {idx}>
-              <Text> {attendee.name} </Text>
-              <Text> {attendee.img} </Text>
+              <Text style={styles.body}>{attendee.name}</Text>
+              <Text style={styles.body}>{attendee.img}</Text>
             </View>
           })}
         </View>
 
         {eventData.host === USER.id && eventData.status === "live" && eventData.message !== "" &&
           <View>
-            <Text> Your Event was approved with the following message </Text>
-            <Text> {eventData.message} </Text>
+            <Text>Your Event was approved with the following message</Text>
+            <Text>{eventData.message}</Text>
             <Pressable onPress={() => clearMessage()}>
               <Text> Clear Message </Text>
             </Pressable>
@@ -110,8 +110,8 @@ export default function EventInformationScreen({ route, navigation }) {
 
         {eventData.host === USER.id && eventData.status === "rejected" && eventData.message !== "" &&
           <View>
-            <Text> Your Event was rejected with the following message </Text>
-            <Text> {eventData.message} </Text>
+            <Text>Your Event was rejected with the following message</Text>
+            <Text>{eventData.message}</Text>
             <Pressable onPress={() => clearMessage()}>
               <Text> Clear Message </Text>
             </Pressable>
@@ -123,14 +123,14 @@ export default function EventInformationScreen({ route, navigation }) {
             <Pressable onPress={() => {navigation.navigate("Cancel", {
               eventData: eventData,
             })}}>
-              <Text> Cancel RSVP </Text>
+              <Text>Cancel RSVP</Text>
             </Pressable>
           }
           {!attendees.includes(USER.id) && eventData.status === "live" &&
             <Pressable onPress={() => {navigation.navigate("Register", {
               eventData: eventData,
             })}}>
-              <Text> RSVP </Text>
+              <Text style={styles.subheader}>RSVP</Text>
             </Pressable>
           }
           {eventData.host === USER.id && eventData.status === "live" &&
@@ -177,11 +177,19 @@ export default function EventInformationScreen({ route, navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
+    ...Layout.container,
+    alignItems: "flex-start"
+  },
+  body: {
+    ...Typography.body
+  },
+  subheader: {
+    ...Typography.subheader,
+  },
+  small: {
+    ...Typography.small,
+    fontSize: 10,
+    lineHeight: 12,
   },
   textInput: {
     width: '80%',

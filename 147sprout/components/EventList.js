@@ -35,6 +35,7 @@ export default function EventList({ events }) {
 const styles = StyleSheet.create({
   container: {
     ...Layout.container,
+    alignItems: "flex-start"
   },
   body: {
     ...Typography.smallBody
