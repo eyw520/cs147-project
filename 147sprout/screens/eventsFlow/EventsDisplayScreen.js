@@ -9,16 +9,22 @@ export default function EventsDisplayScreen({ route }) {
   const { eventList, title } = route.params;
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text> {title} </Text>
+    <SafeAreaView style={styles.topContainer}>
+      <Text style={styles.header}>{title}</Text>
       <EventList events={eventList} />
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
+  topContainer: {
+    ...Layout.topContainer,
+  },
   container: {
     ...Layout.container,
-    backgroundColor: Colors.white
   },
+  header: {
+    ...Typography.header,
+    marginBottom: 10
+  }
 });

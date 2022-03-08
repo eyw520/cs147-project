@@ -1,8 +1,10 @@
-import { StyleSheet, Text, View, FlatList, Pressable, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Pressable, SafeAreaView, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import { Colors, Layout, Typography } from "../styles";
+import * as Images from "../assets/images/";
 
 export default function FriendsList({ friends }) {
   const navigation = useNavigation();
@@ -30,9 +32,10 @@ export default function FriendsList({ friends }) {
         <Pressable onPress={() => {navigation.navigate("View Profile", {
           userData: item
         })}}>
-          <View>
-            <Text> {item.name}, {item.pronouns} </Text>
-            <Text> {item.img} </Text>
+          <View style={styles.friend}>
+            <Image style={styles.image} source={Images.profiles[item.img]} />
+            <Text style={styles.body}>{item.name}, </Text>
+            <Text style={styles.pronouns}>{item.pronouns}</Text>
           </View>
         </Pressable>
       </View>
@@ -51,13 +54,32 @@ export default function FriendsList({ friends }) {
 }
 
 const styles = StyleSheet.create({
+  topContainer: {
+    ...Layout.topContainer,
+  },
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
-    borderStyle: "solid",
-    borderWidth:  1
+    ...Layout.container,
+  },
+  friend: {
+    ...Layout.container,
+    flexDirection: "row",
+    flexWrap: "nowrap",
+    alignItems: "center",
+    marginBottom: 10
+  },
+  image: {
+    ...Layout.image,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    marginRight: 10
+  },
+  body: {
+    ...Typography.body,
+  },
+  pronouns: {
+    ...Typography.body,
+    color: Colors.gray,
+    textTransform: "lowercase"
   },
 });

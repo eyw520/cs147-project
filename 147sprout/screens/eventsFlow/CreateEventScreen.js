@@ -1,10 +1,11 @@
-import { StyleSheet, Button, Text, TextInput, View, SafeAreaView, Pressable } from 'react-native';
+import { StyleSheet, field, Text, TextInput, View, SafeAreaView, Pressable, ScrollView } from 'react-native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { MultiSelect } from 'react-native-element-dropdown';
 import Modal from "react-native-modal";
 import React, { useEffect, useState } from "react";
 import { collection, doc, setDoc, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
+import { FontAwesome5 } from '@expo/vector-icons';
 import { Colors, Layout, Typography } from "../../styles";
 
 import INTERESTS from "../../consts/interests";
@@ -83,170 +84,251 @@ export default function CreateEventScreen({ navigation }) {
   ]);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={{fontSize: 20}}>CREATE NEW EVENT</Text>
+    <SafeAreaView style={styles.topContainer}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Text style={styles.header}>Create New Event</Text>
 
-      <MultiSelect
-        style = {styles.dropdown}
-        search
-        data={REVIEWERS}
-        labelField="username"
-        valueField="id"
-        placeholder="Assign reviewer(s)"
-        searchPlaceholder="Search reviewer..."
-        value={eventReviewers}
-        onChange={item => {
-          setEventReviewers(item)
-        }}
-      />
+        <Text style={styles.small}>Assign Reviewers</Text>
+        <MultiSelect
+          style={[styles.field, styles.sort]}
+          selectedStyle={styles.selected}
+          placeholderStyle={styles.body}
+          selectedTextStyle={styles.body}
+          search
+          data={REVIEWERS}
+          labelField="username"
+          valueField="id"
+          placeholder="Assign reviewer(s)"
+          searchPlaceholder="Search reviewer..."
+          value={eventReviewers}
+          onChange={item => {
+            setEventReviewers(item)
+          }}
+        />
 
-      <TextInput
-        style={styles.textInput}
-        value={eventTitle}
-        placeholder="event title"
-        onChangeText={(newText) => setEventTitle(newText)}
-      />
+        <Text style={styles.small}>Event Title</Text>
+        <TextInput
+          style={[styles.field, styles.body, styles.input]}
+          value={eventTitle}
+          placeholder="event title"
+          onChangeText={(newText) => setEventTitle(newText)}
+        />
 
-      <TextInput
-        style={styles.textInput}
-        value={eventDescription}
-        placeholder="event description"
-        onChangeText={(newText) => setEventDescription(newText)}
-      />
+        <Text style={styles.small}>Event Description</Text>
+        <TextInput
+          style={[styles.field, styles.body, styles.input]}
+          value={eventDescription}
+          placeholder="event description"
+          onChangeText={(newText) => setEventDescription(newText)}
+        />
 
-      <TextInput
-        style={styles.textInput}
-        value={eventAddress}
-        placeholder="event address"
-        onChangeText={(newText) => setEventAddress(newText)}
-      />
+        <Text style={styles.small}>Event Address</Text>
+        <TextInput
+          style={[styles.field, styles.body, styles.input]}
+          value={eventAddress}
+          placeholder="event address"
+          onChangeText={(newText) => setEventAddress(newText)}
+        />
 
-      <MultiSelect
-        style = {styles.dropdown}
-        search
-        data={INTERESTS}
-        labelField="val"
-        valueField="val"
-        placeholder="Select interest(s)"
-        searchPlaceholder="Search interests..."
-        value={eventInterests}
-        onChange={item => {
-          setEventInterests(item);
-        }}
-      />
+        <Text style={styles.small}>Select Interests</Text>
+        <MultiSelect
+          style={[styles.field, styles.sort]}
+          selectedStyle={styles.selected}
+          placeholderStyle={styles.body}
+          selectedTextStyle={styles.body}
+          search
+          data={INTERESTS}
+          labelField="val"
+          valueField="val"
+          placeholder="Select interest(s)"
+          searchPlaceholder="Search interests..."
+          value={eventInterests}
+          onChange={item => {
+            setEventInterests(item);
+          }}
+        />
 
-      <MultiSelect
-        style = {styles.dropdown}
-        search
-        data={LOCATIONS}
-        labelField="val"
-        valueField="val"
-        placeholder="Select location(s)"
-        searchPlaceholder="Search location..."
-        value={eventLocations}
-        onChange={item => {
-          setEventLocations(item);
-        }}
-      />
+        <Text style={styles.small}>Select Locations</Text>
+        <MultiSelect
+          style={[styles.field, styles.sort]}
+          selectedStyle={styles.selected}
+          placeholderStyle={styles.body}
+          selectedTextStyle={styles.body}
+          search
+          data={LOCATIONS}
+          labelField="val"
+          valueField="val"
+          placeholder="Select location(s)"
+          searchPlaceholder="Search location..."
+          value={eventLocations}
+          onChange={item => {
+            setEventLocations(item);
+          }}
+        />
 
-      <Button title="select start datetime" onPress={() => setOpenStart(true)} />
-      <Text> {eventStart.toString()} </Text>
-      <DateTimePickerModal
-        isVisible={openStart}
-        mode="datetime"
-        display="inline"
-        minimumDate={new Date(Date.now())}
-        onConfirm={(date) => {
-          setEventStart(date)
-          setOpenStart(false)
-        }}
-        onCancel={() => setOpenStart(false)}
-      />
-
-      <Button title="select end datetime" onPress={() => setOpenEnd(true)} />
-      <Text> {eventEnd.toString()} </Text>
-      <DateTimePickerModal
-        isVisible={openEnd}
-        mode="datetime"
-        display="inline"
-        minimumDate = {eventStart}
-        onConfirm={(date) => {
-          setEventEnd(date)
-          setOpenEnd(false)
-        }}
-        onCancel={() => setOpenEnd(false)}
-      />
-
-      {confirm ?
-        <Text style={{fontSize: 20}}>
-          Confirmed
-        </Text>
-        :
-        <Pressable onPress={() => setConfirm(true)}>
-          <Text style={{fontSize: 20}}>
-            I assert the inputted details are correct.
-          </Text>
+        <Text style={styles.small}>Start Time</Text>
+        <Pressable style={[styles.field, styles.input]} onPress={() => setOpenStart(true)}>
+          <Text style={styles.body}>{eventStart.toDateString()}, {eventStart.toLocaleTimeString()}</Text>
+          <DateTimePickerModal
+            isVisible={openStart}
+            mode="datetime"
+            display="inline"
+            minimumDate={new Date(Date.now())}
+            onConfirm={(date) => {
+              setEventStart(date)
+              setOpenStart(false)
+            }}
+            onCancel={() => setOpenStart(false)}
+          />
         </Pressable>
-      }
 
-      {enableSubmit ?
-        <Pressable onPress={() => submitEvent()}>
-          <Text style={{fontSize: 20, backgroundColor: '#ddd'}}>
-            Submit
-          </Text>
+        <Text style={styles.small}>End Time</Text>
+        <Pressable style={[styles.field, styles.input]} onPress={() => setOpenEnd(true)}>
+          <Text style={styles.body}>{eventEnd.toDateString()}, {eventEnd.toLocaleTimeString()}</Text>
+          <DateTimePickerModal
+            isVisible={openEnd}
+            mode="datetime"
+            display="inline"
+            minimumDate = {eventStart}
+            onConfirm={(date) => {
+              setEventEnd(date)
+              setOpenEnd(false)
+            }}
+            onCancel={() => setOpenEnd(false)}
+          />
         </Pressable>
-        :
-        <Text style={{fontSize: 20}}>
-          Fill out to Submit
-        </Text>
-      }
 
-      <Modal
-        style={{ alignItems: "center" }}
-        isVisible={modalVisible}
-      >
-        <View style={{ alignItems: "center", height: 100, width: 300, backgroundColor: "white" }}>
+        <View style={styles.submit}>
+          {confirm ?
+            <View style={styles.complete}>
+              <Text style={styles.bodyGreen}>
+                Confirmed  <FontAwesome5 name="check" size={12} color={Colors.green} />
+              </Text>
 
-          <Text style={{ fontSize: 20, marginBottom: 10 }}>
-            Your event will be reviewed.
-          </Text>
-          <Pressable onPress={() => (
-            setModalVisible(false),
-            navigation.navigate("Manage Events")
-          )}>
-            <Text>
-              Click here to return to your events.
-            </Text>
-          </Pressable>
-
+            </View>
+            :
+            <Pressable style={styles.button} onPress={() => setConfirm(true)}>
+              <Text style={styles.body}>I assert the inputted details are correct</Text>
+            </Pressable>
+          }
         </View>
-      </Modal>
 
+        <View style={styles.submit}>
+          {enableSubmit ?
+            <Pressable style={styles.button} onPress={() => submitEvent()}>
+              <Text style={styles.body}>Submit</Text>
+            </Pressable>
+            :
+            <View style={styles.buttonGray}>
+              <Text style={styles.bodyGray}>Fill All Fields to Submit</Text>
+            </View>
+          }
+        </View>
+
+        <Modal isVisible={modalVisible}>
+          <View style={styles.modal}>
+
+            <Text style={[styles.body, {marginBottom: 20}]}>Your event will be reviewed.</Text>
+            <Pressable
+              style={styles.button}
+              onPress={() => (
+                setModalVisible(false),
+                navigation.navigate("Manage Events")
+              )}
+            >
+              <Text style={styles.body}>Return to Events</Text>
+            </Pressable>
+
+          </View>
+        </Modal>
+      </ScrollView>
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
+  topContainer: {
+    ...Layout.topContainer,
   },
-  textInput: {
-    width: '80%',
-    height: 30,
-    padding: 8,
-    margin: 2,
-    backgroundColor: '#ddd',
-    borderStyle: "solid",
-    borderWidth:  1
+  modal: {
+    ...Layout.modal,
+    paddingVertical: 30,
+    alignItems: "center"
   },
-  dropdown: {
-    width: '80%',
-    backgroundColor: '#ddd',
-    borderStyle: "solid",
-    borderWidth:  1
-  }
+  hContainer: {
+    ...Layout.container,
+    flexDirection: "row",
+    flexWrap: "nowrap",
+    justifyContent: "space-between",
+  },
+  tagsContainer: {
+    ...Layout.container,
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
+  sort: {
+    paddingVertical: 0,
+  },
+  sortText: {
+    ...Typography.body,
+    color: Colors.gray,
+    fontSize: 12,
+    lineHeight: 18
+  },
+  button: {
+    ...Layout.button
+  },
+  buttonGray: {
+    ...Layout.button,
+    borderColor: Colors.lightGray,
+    borderRadius: 20,
+  },
+  complete: {
+    ...Layout.button,
+    borderColor: Colors.green,
+    borderRadius: 20,
+    flexDirection: "row",
+    flexWrap: "nowrap",
+  },
+  field: {
+    ...Layout.button,
+    width: "100%",
+    marginBottom: 10
+  },
+  input: {
+    paddingVertical: 8
+  },
+  selected: {
+    marginTop: 0,
+    marginBottom: 10
+  },
+  submit: {
+    alignSelf: "flex-start",
+    marginTop: 10
+  },
+  header: {
+    ...Typography.header,
+    marginBottom: 10
+  },
+  subheader: {
+    ...Typography.subheader,
+  },
+  body: {
+    ...Typography.body,
+  },
+  bodyGray: {
+    ...Typography.body,
+    color: Colors.lightGray
+  },
+  bodyGreen: {
+    ...Typography.body,
+    color: Colors.green
+  },
+  small: {
+    ...Typography.small,
+    fontSize: 10,
+    lineHeight: 10,
+    marginLeft: 15,
+    marginBottom: 4
+  },
 });

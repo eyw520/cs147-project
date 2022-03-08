@@ -18,7 +18,7 @@ export default function EventRestoreScreen({ route, navigation }) {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.topContainer}>
 
     <Text style={{fontSize: 20}}>
       Would you like to restore your event?
@@ -53,12 +53,11 @@ export default function EventRestoreScreen({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
+  topContainer: {
+    ...Layout.topContainer,
+  },
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
+    ...Layout.container,
   },
   textInput: {
     width: '80%',

@@ -9,10 +9,10 @@ export default function FriendsDisplayScreen({ route }) {
   const { friends } = route.params;
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text> Your Friends </Text>
+    <SafeAreaView style={styles.topContainer}>
+      <Text style={styles.header}>Your Friends</Text>
       {friends.length === 0 ?
-        <Text> Find Friends w/ your interests through the social tab! </Text>
+        <Text style={styles.body}>Find Friends w/ your interests through the social tab!</Text>
         :
         <FriendsList friends={friends} />
       }
@@ -21,8 +21,17 @@ export default function FriendsDisplayScreen({ route }) {
 }
 
 const styles = StyleSheet.create({
+  topContainer: {
+    ...Layout.topContainer,
+  },
   container: {
     ...Layout.container,
-    backgroundColor: Colors.white
+  },
+  header: {
+    ...Typography.header,
+    marginBottom: 10
+  },
+  body: {
+    ...Typography.body,
   },
 });

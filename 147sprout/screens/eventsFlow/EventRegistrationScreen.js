@@ -34,7 +34,7 @@ export default function EventRegistrationScreen({ route, navigation }) {
   }, [request, otherDetails, confirm]);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.topContainer}>
     <Text style={{fontSize: 20}}> Fill out to confirm your registration: </Text>
 
     <TextInput
@@ -80,12 +80,11 @@ export default function EventRegistrationScreen({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
+  topContainer: {
+    ...Layout.topContainer,
+  },
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
+    ...Layout.container,
   },
   textInput: {
     width: '80%',

@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, FlatList, Pressable, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Colors, Layout, Typography } from "../styles";
 
 export default function EventList({ flowers }) {
   const navigation = useNavigation();
@@ -32,13 +33,10 @@ export default function EventList({ flowers }) {
 }
 
 const styles = StyleSheet.create({
+  topContainer: {
+    ...Layout.topContainer,
+  },
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
-    borderStyle: "solid",
-    borderWidth:  1
+    ...Layout.container,
   },
 });

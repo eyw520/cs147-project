@@ -27,7 +27,7 @@ export default function HomeScreen({ navigation }) {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.topContainer}>
       <View style={styles.container}>
         <Text style={styles.subheader}>
           Welcome back to Sprout, {USER.name}!
@@ -58,8 +58,15 @@ export default function HomeScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  topContainer: {
+    ...Layout.topContainer,
+    justifyContent: "center"
+  },
   container: {
-    ...Layout.container
+    ...Layout.container,
+    height: "60%",
+    justifyContent: "center",
+    alignItems: "center"
   },
   header: {
     ...Typography.header
@@ -68,11 +75,12 @@ const styles = StyleSheet.create({
     ...Typography.subheader
   },
   body: {
-    ...Typography.body
+    ...Typography.body,
+    textAlign: "center"
   },
   smallGarden: {
     ...Layout.container,
-    flex: 0.25
+    height: "10%"
   },
   image: {
     marginVertical: 20

@@ -9,15 +9,17 @@ export default function YourGardenScreen({ route }) {
   const { flowers } = route.params;
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.topContainer}>
       <FlowerList flowers={flowers} />
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
+  topContainer: {
+    ...Layout.topContainer,
+  },
   container: {
     ...Layout.container,
-    backgroundColor: Colors.white
   },
 });

@@ -16,59 +16,84 @@ export default function FindEventsScreen({ route, navigation }) {
   const { allEvents } = route.params;
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.topContainer}>
 
-    <Dropdown
-      style = {styles.dropdown}
-      data = {SortBy}
-      placeholder = 'Sort By: Interests'
-      labelField = "label"
-      valueField = "val"
-      value = {sort}
-      onChange = {(item) => { setSort(item.val) }}
-    />
+      <View style={styles.container}>
+        <Dropdown
+          style = {[styles.button, styles.sort]}
+          placeholderStyle = {styles.sortText}
+          selectedTextStyle = {styles.sortText}
+          data = {SortBy}
+          placeholder = 'Sort By: Interests'
+          labelField = "label"
+          valueField = "val"
+          value = {sort}
+          onChange = {(item) => { setSort(item.val) }}
+        />
+      </View>
 
-    <Text style={{fontSize: 20}}>Sorting By</Text>
+      <View style={styles.tagsContainer}>
       {sort === "Interests" ?
         INTERESTS.map((interest) => {
-          return <Pressable style={styles.sort} key = {interest.key}
+          return <Pressable style={styles.button} key = {interest.key}
             onPress={() => {navigation.navigate(interest.val, {
               eventList: allEvents.filter(item => item.interests.includes(interest.val) && item.status === "live"),
               title: interest.val
             })}}>
-            <Text> {interest.val} </Text>
+            <Text style={styles.body}>{interest.val}</Text>
           </Pressable>
         })
         :
         LOCATIONS.map((location) => {
-          return <Pressable style={styles.sort} key = {location.key}
+          return <Pressable style={styles.button} key = {location.key}
             onPress={() => {navigation.navigate(location.val, {
               eventList: allEvents.filter(item => item.locations.includes(location.val) && item.status === "live"),
               title: location.val
             })}}>
-            <Text> {location.val} </Text>
+            <Text style={styles.body}>{location.val}</Text>
           </Pressable>
         })
       }
+      </View>
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
+  topContainer: {
+    ...Layout.topContainer,
+  },
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
+    ...Layout.container,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center"
+  },
+  tagsContainer: {
+    ...Layout.container,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    marginTop: 10
   },
   sort: {
-    borderStyle: "solid",
-    borderWidth:  1
+    paddingVertical: 0,
+    width: 200,
   },
-  dropdown: {
-    width: '80%',
-    borderStyle: "solid",
-    borderWidth:  1
+  sortText: {
+    ...Typography.body,
+    color: Colors.gray,
+    fontSize: 12,
+    lineHeight: 18
+  },
+  button: {
+    ...Layout.button,
+    marginRight: 10,
+    marginBottom: 10
+  },
+  subheader: {
+    ...Typography.subheader
+  },
+  body: {
+    ...Typography.body
   }
 });

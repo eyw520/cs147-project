@@ -1,8 +1,9 @@
-import { StyleSheet, Text, TextInput, View, SafeAreaView, Pressable } from 'react-native';
+import { StyleSheet, Text, TextInput, View, SafeAreaView, Pressable, Image } from 'react-native';
 import React, { useEffect, useState } from "react";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { Colors, Layout, Typography } from "../../styles";
+import * as Images from "../../assets/images/";
 
 import USER from "../../consts/user";
 
@@ -80,20 +81,21 @@ export default function EventInformationScreen({ route, navigation }) {
   }, []);
 
   return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.topContainer}>
         <View style={styles.container}>
-          <Text style={styles.subheader}>{eventData.eventName}</Text>
-          <Text style={styles.small}>{eventData.eventStart}, {eventData.eventEnd}</Text>
+          <Image style={[styles.headerImage, styles.bottomMargin]} source={Images.events[eventData.id]}/>
+          <Text style={styles.header}>{eventData.eventName}</Text>
+          <Text style={styles.small}>{eventData.eventStart} - {eventData.eventEnd}</Text>
           <Text style={styles.subheader}>{eventData.eventAddress}</Text>
-          <Text style={styles.body}>{eventData.eventDescription}</Text>
+          <Text style={[styles.body, styles.bottomMargin]}>{eventData.eventDescription}</Text>
         </View>
 
         <View style={styles.container}>
-          <Text>Who else is attending:</Text>
+          <Text style={styles.subheader}>Who else is attending:</Text>
           {attendeeData.map((attendee, idx) => {
-            return <View key = {idx}>
+            return <View key={idx} style={styles.attendee}>
+              <Image style={styles.attendeeImage} source={Images.profiles[attendee.img]}/>
               <Text style={styles.body}>{attendee.name}</Text>
-              <Text style={styles.body}>{attendee.img}</Text>
             </View>
           })}
         </View>
@@ -176,12 +178,37 @@ export default function EventInformationScreen({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
+  topContainer: {
+    ...Layout.topContainer,
+  },
   container: {
     ...Layout.container,
-    alignItems: "flex-start"
+  },
+  attendee: {
+    ...Layout.container,
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 5
+  },
+  headerImage: {
+    ...Layout.image,
+    width: "100%",
+    height: 220,
+    borderRadius: 20
+  },
+  attendeeImage: {
+    ...Layout.image,
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    marginRight: 10
   },
   body: {
     ...Typography.body
+  },
+  header: {
+    ...Typography.header,
+    marginBottom: 5
   },
   subheader: {
     ...Typography.subheader,
@@ -190,6 +217,9 @@ const styles = StyleSheet.create({
     ...Typography.small,
     fontSize: 10,
     lineHeight: 12,
+  },
+  bottomMargin: {
+    marginBottom: 10
   },
   textInput: {
     width: '80%',

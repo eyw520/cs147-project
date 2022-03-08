@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View, FlatList, Pressable, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Pressable, SafeAreaView, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Colors, Layout, Typography } from "../styles";
+import * as Images from "../assets/images/";
 
 export default function EventList({ events }) {
   const navigation = useNavigation();
@@ -11,10 +12,13 @@ export default function EventList({ events }) {
         <Pressable onPress={() => {navigation.navigate("Event Information", {
           eventData: item,
         })}}>
-          <View key={item.id}>
-            <Text style={styles.subheader}>{item.eventName}, {item.eventAddress}</Text>
-            <Text style={styles.body}>{item.eventDescription}</Text>
-            <Text style={styles.small}>{item.eventStart}, {item.eventEnd}</Text>
+          <View key={item.id} style={styles.event}>
+            <Image style={styles.image} source={Images.events[item.id]} />
+            <View style={styles.details}>
+              <Text numberOfLines={1} style={styles.small}>{item.eventStart}</Text>
+              <Text numberOfLines={1} style={styles.subheader}>{item.eventName}</Text>
+              <Text numberOfLines={1} style={styles.body}>{item.eventAddress}</Text>
+            </View>
           </View>
         </Pressable>
       </View>
@@ -22,7 +26,7 @@ export default function EventList({ events }) {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.topContainer}>
       <FlatList
         showsVerticalScrollIndicator={false}
         data={events}
@@ -33,18 +37,42 @@ export default function EventList({ events }) {
 }
 
 const styles = StyleSheet.create({
+  topContainer: {
+    ...Layout.topContainer,
+    paddingHorizontal: 0,
+    paddingVertical: 0,
+  },
   container: {
     ...Layout.container,
-    alignItems: "flex-start"
+    marginVertical: 5,
+    height: 55,
+    overflow: "hidden"
+  },
+  event: {
+    ...Layout.container,
+    flexDirection: "row",
+  },
+  image: {
+    ...Layout.image,
+    width: 82.5,
+    height: 55,
+    borderRadius: 10,
+    marginRight: 10
+  },
+  details: {
+    flex: 1
   },
   body: {
-    ...Typography.smallBody
+    ...Typography.body,
+    lineHeight: 20
   },
   subheader: {
-    ...Typography.smallBody,
-    fontWeight: "600"
+    ...Typography.subheader,
+    lineHeight: 20
   },
   small: {
-    ...Typography.small
+    ...Typography.smallBody,
+    lineHeight: 15,
+    textTransform: "uppercase"
   }
 });

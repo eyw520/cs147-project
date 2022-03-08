@@ -32,16 +32,17 @@ export default function MessagesScreen({ navigation }) {
   }, [])
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>CHATS</Text>
+    <SafeAreaView style={styles.topContainer}>
       <ChatList chats={chatData}/>
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
+  topContainer: {
+    ...Layout.topContainer,
+  },
   container: {
     ...Layout.container,
-    backgroundColor: Colors.white
   },
 });

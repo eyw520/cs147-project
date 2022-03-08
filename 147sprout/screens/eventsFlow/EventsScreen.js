@@ -1,4 +1,4 @@
-import { StyleSheet, Button, Text, View, SafeAreaView } from 'react-native';
+import { StyleSheet, Pressable, Text, View, SafeAreaView } from 'react-native';
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
@@ -39,37 +39,55 @@ export default function EventsScreen({ navigation }) {
   }, [allEvents]);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.topContainer}>
       <View style={styles.container}>
-        <Text style={{fontSize: 20}}> Events You're Attending </Text>
+        <Text style={styles.subheader}>Events You're Attending</Text>
         <EventList events={userAttending} />
       </View>
 
       <View style={styles.container}>
-        <Text style={{fontSize: 20}}> Events You're Hosting </Text>
+        <Text style={styles.subheader}>Events You're Hosting</Text>
         <EventList events={userHosting} />
       </View>
 
-      <View style={styles.button}>
-        <Button
-            title="Find Events"
+      <View style={styles.buttonContainer}>
+        <Pressable
+            style={styles.button}
             onPress={() => navigation.navigate("Find Events", {
               allEvents: allEvents,
               userAttending: userAttending,
               userHosting: userHosting,
             })}
-        />
+        >
+          <Text style={styles.body}>Find Events</Text>
+        </Pressable>
       </View>
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
+  topContainer: {
+    ...Layout.topContainer
+  },
   container: {
     ...Layout.container,
+    flex: 1,
+    overflow: "hidden",
+    paddingBottom: 10,
+    marginBottom: 10
+  },
+  buttonContainer: {
+    ...Layout.container,
+    marginTop: 15
   },
   button: {
-    ...Layout.container,
-    flex: .4
+    ...Layout.button
+  },
+  subheader: {
+    ...Typography.subheader
+  },
+  body: {
+    ...Typography.body
   }
 });

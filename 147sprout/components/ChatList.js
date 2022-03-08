@@ -1,5 +1,7 @@
 import { StyleSheet, Text, View, FlatList, Pressable, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Colors, Layout, Typography } from "../styles";
+import * as Images from "../assets/images/";
 
 import USER from "../consts/user";
 
@@ -13,18 +15,18 @@ export default function ChatList({ chats }) {
           chatData: item,
         })}}>
           {item.chatName === "" ?
-            <Text> Direct Message w/ {item.members.filter(item => item !== USER.id)[0]}</Text>
+            <Text>Direct Message w/ {item.members.filter(item => item !== USER.id)[0]}</Text>
             :
-            <Text> {item.chatName} </Text>
+            <Text>{item.chatName}</Text>
           }
 
           {item.latestSender === USER.name ?
-          <Text> You </Text>
+          <Text>You</Text>
           :
-          <Text> {item.latestSender} </Text>
+          <Text>{item.latestSender}</Text>
           }
 
-          <Text> {item.latestMessage} </Text>
+          <Text>{item.latestMessage}</Text>
         </Pressable>
       </View>
     );
@@ -42,13 +44,10 @@ export default function ChatList({ chats }) {
 }
 
 const styles = StyleSheet.create({
+  topContainer: {
+    ...Layout.topContainer,
+  },
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
-    borderStyle: "solid",
-    borderWidth:  1
+    ...Layout.container,
   },
 });

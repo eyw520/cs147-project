@@ -45,24 +45,24 @@ export default function ManageEventsScreen({ navigation }) {
   }, [allUserEvents]);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.topContainer}>
       <View style={styles.container}>
-        <Text style={{fontSize: 20}}> Your Hosting Events </Text>
+        <Text style={styles.subheader}>Your Hosting Events</Text>
         <EventList events={userHostingLive} />
       </View>
 
       <View style={styles.container}>
-        <Text style={{fontSize: 20}}> Your Pending Events </Text>
+        <Text style={styles.subheader}>Your Pending Events</Text>
         <EventList events={userHostingReview} />
       </View>
 
       <View style={styles.container}>
-        <Text style={{fontSize: 20}}> Your Rejected Events </Text>
+        <Text style={styles.subheader}>Your Rejected Events</Text>
         <EventList events={userHostingRejected} />
       </View>
 
       <View style={styles.container}>
-        <Text style={{fontSize: 20}}> Your Cancelled Events </Text>
+        <Text style={styles.subheader}>Your Cancelled Events</Text>
         <EventList events={userHostingCancelled} />
       </View>
     </SafeAreaView>
@@ -70,8 +70,15 @@ export default function ManageEventsScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  topContainer: {
+    ...Layout.topContainer,
+  },
   container: {
     ...Layout.container,
-    backgroundColor: Colors.white
+    flex: 1,
+    marginBottom: 10
+  },
+  subheader: {
+    ...Typography.subheader,
   },
 });

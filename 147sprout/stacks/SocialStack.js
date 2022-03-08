@@ -31,7 +31,7 @@ export default function SocialStack({ navigation }) {
           headerLeft: () => (
             <Pressable
               onPress={() => navigation.navigate('Social Profile')}
-              style={styles.container}>
+              style={styles.topBar}>
               <FontAwesome5 name="user-alt" size={size} color={color} />
               <Text style={styles.small}>Profile</Text>
             </Pressable>
@@ -39,8 +39,8 @@ export default function SocialStack({ navigation }) {
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Messages')}
-              style={styles.container}>
-              <FontAwesome5 name="code" size={size} color={color} />
+              style={styles.topBar}>
+              <FontAwesome5 name="comment" size={size} color={color} />
               <Text style={styles.small}>Chats</Text>
             </Pressable>
           ),
@@ -52,11 +52,8 @@ export default function SocialStack({ navigation }) {
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Social Edit Profile')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome name="code" size={30} color="gray" />
-              <Text> Edit </Text>
+              style={styles.topBar}>
+              <Text style={styles.smallTextOnly}>Edit</Text>
             </Pressable>
           ),
         })}
@@ -87,13 +84,23 @@ export default function SocialStack({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  topBar: {
+    ...Layout.topContainer,
+    ...Layout.topBar
+  },
   container: {
     ...Layout.container,
-    backgroundColor: Colors.white
   },
   small: {
     ...Typography.small,
     color: Colors.gray,
     marginVertical: 4
+  },
+  smallTextOnly: {
+    ...Typography.small,
+    fontSize: 11,
+    lineHeight: 11,
+    color: Colors.gray,
+    marginVertical: 4,
   }
 });

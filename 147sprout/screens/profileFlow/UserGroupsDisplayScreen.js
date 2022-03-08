@@ -23,15 +23,14 @@ export default function GroupsDisplayScreen({ route }) {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.topContainer}>
       <GroupDisplayList groups={groupList} />
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    ...Layout.container,
-    backgroundColor: Colors.white
+  topContainer: {
+    ...Layout.topContainer,
   },
 });

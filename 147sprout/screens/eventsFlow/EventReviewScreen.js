@@ -30,22 +30,29 @@ export default function EventReviewScreen({ navigation }) {
     }, [])
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.topContainer}>
       {eventsForUserReview.length > 0 ?
         <View style={styles.container}>
-          <Text style={{fontSize: 20}}> Events For Your Review </Text>
+          <Text style={styles.subheader}>Events For Your Review</Text>
           <EventList events={eventsForUserReview} />
         </View>
         :
-        <Text style={{fontSize: 20}}> No Events For Review </Text>
+        <Text style={styles.subheader}>No Events For Review</Text>
       }
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
+  topContainer: {
+    ...Layout.topContainer,
+  },
   container: {
     ...Layout.container,
-    backgroundColor: Colors.white
+    flex: 1,
+    marginBottom: 10
+  },
+  subheader: {
+    ...Typography.subheader,
   },
 });

@@ -56,12 +56,11 @@ export default function EventDeletionScreen({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
+  topContainer: {
+    ...Layout.topContainer,
+  },
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
+    ...Layout.container,
   },
   textInput: {
     width: '80%',

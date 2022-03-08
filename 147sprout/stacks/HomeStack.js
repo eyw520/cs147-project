@@ -30,7 +30,7 @@ export default function HomeStack({ navigation }) {
           headerLeft: () => (
             <Pressable
               onPress={() => navigation.navigate('Home Profile')}
-              style={styles.container}>
+              style={styles.topBar}>
               <FontAwesome5 name="user-alt" size={size} color={color} />
               <Text style={styles.small}>Profile</Text>
             </Pressable>
@@ -38,7 +38,7 @@ export default function HomeStack({ navigation }) {
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Settings')}
-              style={styles.container}>
+              style={styles.topBar}>
               <FontAwesome5 name="cog" size={size} color={color} />
               <Text style={styles.small}>Settings</Text>
             </Pressable>
@@ -51,9 +51,8 @@ export default function HomeStack({ navigation }) {
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Home Edit Profile')}
-              style={styles.container}>
-              <FontAwesome5 name="code" size={size} color={color} />
-              <Text style={styles.small}> Edit </Text>
+              style={styles.topBar}>
+              <Text style={styles.smallTextOnly}>Edit</Text>
             </Pressable>
           ),
         })}
@@ -74,13 +73,23 @@ export default function HomeStack({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  topBar: {
+    ...Layout.topContainer,
+    ...Layout.topBar
+  },
   container: {
     ...Layout.container,
-    backgroundColor: Colors.white
   },
   small: {
     ...Typography.small,
     color: Colors.gray,
     marginVertical: 4
+  },
+  smallTextOnly: {
+    ...Typography.small,
+    fontSize: 11,
+    lineHeight: 11,
+    color: Colors.gray,
+    marginVertical: 4,
   }
 });

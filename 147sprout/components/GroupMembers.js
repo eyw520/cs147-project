@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import { Colors, Layout, Typography } from "../styles";
 
 import USER from "../consts/user";
 
@@ -61,13 +62,10 @@ export default function GroupMembers({ members }) {
 }
 
 const styles = StyleSheet.create({
+  topContainer: {
+    ...Layout.topContainer,
+  },
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
-    borderStyle: "solid",
-    borderWidth:  1
+    ...Layout.container,
   },
 });

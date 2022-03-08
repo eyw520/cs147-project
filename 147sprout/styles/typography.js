@@ -13,7 +13,7 @@ export const header = {
 export const subheader = {
   fontSize: 16,
   fontWeight: "600",
-  lineHeight: 20,
+  lineHeight: 32,
 };
 
 export const body = {
@@ -31,6 +31,6 @@ export const smallBody = {
 export const small = {
   fontSize: 8,
   fontWeight: "600",
-  lineHeight: 8,
+  lineHeight: 12,
   textTransform: 'uppercase'
 };

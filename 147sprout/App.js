@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import { collection, doc, getDocs, getDoc, updateDoc, setDoc } from "firebase/firestore";
 import { db } from "./firebase";
 import { Colors, Layout, Typography } from "./styles";

@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, FlatList, SafeAreaView } from 'react-native';
+import { Colors, Layout, Typography } from "../styles";
 
 export default function GroupPosts({ posts }) {
   const renderItem = ({ item }) => {
@@ -25,13 +26,10 @@ export default function GroupPosts({ posts }) {
 }
 
 const styles = StyleSheet.create({
+  topContainer: {
+    ...Layout.topContainer,
+  },
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
-    borderStyle: "solid",
-    borderWidth:  1
+    ...Layout.container,
   },
 });

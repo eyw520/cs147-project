@@ -1,9 +1,11 @@
-import { StyleSheet, Text, View, Pressable, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Pressable, SafeAreaView, Image } from 'react-native';
 import React, { useEffect, useState } from "react";
 import Modal from "react-native-modal";
 import { db } from "../../firebase";
 import { collection, doc, getDoc, setDoc, getDocs, query, where, updateDoc } from "firebase/firestore";
+import { FontAwesome5 } from '@expo/vector-icons';
 import { Colors, Layout, Typography } from "../../styles";
+import * as Images from "../../assets/images/";
 
 import USER from "../../consts/user";
 
@@ -83,80 +85,98 @@ export default function ViewProfileScreen({ route, navigation }) {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.container}>
-        <Text> USER DETAILS </Text>
-        <Text> username: {userData.username} </Text>
-        <Text> name: {userData.name} </Text>
-        <Text> pronouns: {userData.pronouns} </Text>
+    <SafeAreaView style={styles.topContainer}>
+      <View style={styles.hContainer}>
+        <View style={styles.left}>
+          <Image style={styles.image} source={Images.profiles[userData.img]} />
+        </View>
+        <View style={styles.container}>
+
+          {isFriend ?
+            <Pressable style={[styles.button, styles.tag]} onPress={() => removeFriend()}>
+              <Text style={styles.body}>Remove Friend</Text>
+            </Pressable>
+            :
+            <Pressable style={[styles.button, styles.tag]} onPress={() => addFriend()}>
+              <Text style={styles.body}>Add Friend</Text>
+            </Pressable>
+          }
+
+          <Pressable
+            style={[styles.button, styles.tag]}
+            onPress={() => navigation.navigate("View User Groups", {
+              userGroups: userData.groups,
+            })}>
+            <Text style={styles.body}>Groups</Text>
+          </Pressable>
+
+          <Pressable style={[styles.button, styles.tag]} onPress={() => chatUser()}>
+            <Text style={styles.body}>Chat</Text>
+          </Pressable>
+
+        </View>
       </View>
 
-      <View style={styles.container}>
-        <Text> USER INTERESTS </Text>
-        {userData.interests.map((interest, idx) => {
-          return <Text key={idx}> {idx}: {interest} </Text>
-        })}
+      <View style={styles.hLine} />
+
+      <View style={styles.hContainer}>
+        <View style={styles.left}>
+          <Text style={styles.details}>username</Text>
+          <Text style={styles.details}>name</Text>
+          <Text style={styles.details}>pronouns</Text>
+        </View>
+        <View style={styles.right}>
+          <Text style={styles.body}>{userData.username}</Text>
+          <Text style={styles.body}>{userData.name}</Text>
+          <Text style={styles.body}>{userData.pronouns}</Text>
+        </View>
       </View>
 
-      <View style={styles.container}>
-        <Text> USER SKILLS </Text>
-        {userData.skills.map((skill, idx) => {
-          return <Text key={idx}>  {idx}: {skill} </Text>
-        })}
-      </View>
+      <View style={styles.hLine} />
 
       <View style={styles.container}>
-        <Text> LOCATIONS </Text>
-        {userData.locations.map((location, idx) => {
-          return <Text key={idx}> {idx}: {location} </Text>
-        })}
+        <Text style={styles.subheader}>Interests</Text>
+        <View style={styles.tagsContainer}>
+          {userData.interests.map((interest, idx) => {
+            return <Text style={[styles.tag, styles.body]} key={idx}>{interest}</Text>
+          })}
+        </View>
       </View>
 
-      {isFriend ?
-        <Pressable onPress={() => removeFriend()}>
-          <Text>
-            Remove Friend
-          </Text>
-        </Pressable>
-        :
-        <Pressable onPress={() => addFriend()}>
-          <Text>
-            Add Friend
-          </Text>
-        </Pressable>
-      }
-      <Pressable onPress={() => navigation.navigate("View User Groups", {
-        userGroups: userData.groups,
-      })}>
-        <Text>
-          View Friend's Groups
-        </Text>
-      </Pressable>
+      <View style={styles.hLine} />
 
-      <Pressable onPress={() => chatUser()}>
-        <Text>
-          Chat
-        </Text>
-      </Pressable>
+      <View style={styles.container}>
+        <Text style={styles.subheader}>Skills</Text>
+        <View style={styles.tagsContainer}>
+          {userData.skills.map((skill, idx) => {
+            return <Text style={[styles.tag, styles.body]} key={idx}>{skill}</Text>
+          })}
+        </View>
+      </View>
 
-      <Modal
-        style={{ alignItems: "center" }}
-        isVisible={modalVisible}
-      >
-        <View style={{ alignItems: "center", height: 150, width: 300, backgroundColor: "white" }}>
+      <View style={styles.hLine} />
 
-          <Text style={{ fontSize: 20, marginBottom: 10 }}>
-            Your chat exists or has been created!
-          </Text>
-          <Text>
-            You can access the conversation through the social tab.
-          </Text>
-          <Pressable onPress={() => (
-            setModalVisible(false)
-          )}>
-            <Text>
-              Click here to exit.
-            </Text>
+      <View style={styles.container}>
+        <Text style={styles.subheader}>Regions</Text>
+        <View style={styles.tagsContainer}>
+          {userData.locations.map((location, idx) => {
+            return <Text style={[styles.tag, styles.body]} key={idx}>{location}</Text>
+          })}
+        </View>
+      </View>
+
+      <Modal isVisible={modalVisible}>
+        <View style={styles.modal}>
+
+          <Text style={styles.subheader}>Your chat exists or has been created!</Text>
+          <Text style={styles.body}>You can access the conversation through the 'Social' tab.</Text>
+          <Pressable
+            style={styles.close}
+            onPress={() => (
+              setModalVisible(false)
+            )}
+          >
+            <Text style={styles.body}>Close</Text>
           </Pressable>
 
         </View>
@@ -166,8 +186,77 @@ export default function ViewProfileScreen({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
+  topContainer: {
+    ...Layout.topContainer,
+  },
   container: {
     ...Layout.container,
-    backgroundColor: Colors.white
   },
+  modal: {
+    ...Layout.modal,
+    paddingVertical: 30
+  },
+  hContainer: {
+    ...Layout.container,
+    flexDirection: "row",
+    flexWrap: "nowrap",
+    justifyContent: "space-between",
+  },
+  tagsContainer: {
+    ...Layout.container,
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
+  hLine: {
+    borderBottomColor: 'black',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    marginVertical: 10
+  },
+  image: {
+    ...Layout.image,
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    marginBottom: 5
+  },
+  left: {
+    marginRight: 20
+  },
+  right: {
+    flex: 1
+  },
+  subheader: {
+    ...Typography.subheader,
+  },
+  body: {
+    ...Typography.body,
+  },
+  details: {
+    ...Typography.small,
+    fontSize: 10,
+    lineHeight: 20,
+  },
+  small: {
+    ...Typography.small,
+  },
+  tag: {
+    ...Layout.button,
+    paddingHorizontal: 15,
+    paddingVertical: 5,
+    borderRadius: 15,
+    marginRight: 10,
+    marginBottom: 10,
+  },
+  button: {
+    flexDirection: "row",
+    flexWrap: "nowrap",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    width: 160
+  },
+  close: {
+    ...Layout.button,
+    marginTop: 20
+  }
 });
