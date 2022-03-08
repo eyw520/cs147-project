@@ -204,7 +204,6 @@ export default function CreateEventScreen({ navigation }) {
               <Text style={styles.bodyGreen}>
                 Confirmed  <FontAwesome5 name="check" size={12} color={Colors.green} />
               </Text>
-
             </View>
             :
             <Pressable style={styles.button} onPress={() => setConfirm(true)}>

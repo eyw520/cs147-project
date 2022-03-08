@@ -1,7 +1,8 @@
-import { StyleSheet, Text, TextInput, View, SafeAreaView, Pressable, Image } from 'react-native';
+import { StyleSheet, Text, TextInput, View, SafeAreaView, ScrollView, Pressable, Image } from 'react-native';
 import React, { useEffect, useState } from "react";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
+import { FontAwesome5 } from '@expo/vector-icons';
 import { Colors, Layout, Typography } from "../../styles";
 import * as Images from "../../assets/images/";
 
@@ -82,88 +83,97 @@ export default function EventInformationScreen({ route, navigation }) {
 
   return (
       <SafeAreaView style={styles.topContainer}>
-        <View style={styles.container}>
+        <ScrollView style={styles.scroll}>
           <Image style={[styles.headerImage, styles.bottomMargin]} source={Images.events[eventData.id]}/>
           <Text style={styles.header}>{eventData.eventName}</Text>
           <Text style={styles.small}>{eventData.eventStart} - {eventData.eventEnd}</Text>
           <Text style={styles.subheader}>{eventData.eventAddress}</Text>
           <Text style={[styles.body, styles.bottomMargin]}>{eventData.eventDescription}</Text>
-        </View>
 
-        <View style={styles.container}>
+          {eventData.host === USER.id && eventData.status === "live" && eventData.message !== "" &&
+            <View>
+              <View style={styles.buttonGreen}>
+                <Text style={styles.bodyGreen}>Approved  <FontAwesome5 name="check" size={12} color={Colors.green} /></Text>
+              </View>
+              <View style={styles.message}>
+                <Text style={styles.body}>{eventData.message}</Text>
+                <Pressable style={styles.button} onPress={() => clearMessage()}>
+                  <Text style={styles.body}>Clear Message</Text>
+                </Pressable>
+              </View>
+            </View>
+          }
+
+          {eventData.host === USER.id && eventData.status === "rejected" && eventData.message !== "" &&
+            <View>
+              <View style={styles.buttonPurple}>
+                <Text style={styles.bodyPurple}>Not Approved  <FontAwesome5 name="times" size={12} color={Colors.purple} /></Text>
+              </View>
+              <View style={styles.message}>
+                <Text style={styles.body}>{eventData.message}</Text>
+                <Pressable style={styles.button} onPress={() => clearMessage()}>
+                  <Text style={styles.body}>Clear Message</Text>
+                </Pressable>
+              </View>
+            </View>
+          }
+
           <Text style={styles.subheader}>Who else is attending:</Text>
-          {attendeeData.map((attendee, idx) => {
-            return <View key={idx} style={styles.attendee}>
+          {attendeeData.map((attendee, idx) => { return (
+            <View key={idx} style={styles.attendee}>
               <Image style={styles.attendeeImage} source={Images.profiles[attendee.img]}/>
               <Text style={styles.body}>{attendee.name}</Text>
             </View>
-          })}
-        </View>
+          )})}
 
-        {eventData.host === USER.id && eventData.status === "live" && eventData.message !== "" &&
-          <View>
-            <Text>Your Event was approved with the following message</Text>
-            <Text>{eventData.message}</Text>
-            <Pressable onPress={() => clearMessage()}>
-              <Text> Clear Message </Text>
-            </Pressable>
-          </View>
-        }
-
-        {eventData.host === USER.id && eventData.status === "rejected" && eventData.message !== "" &&
-          <View>
-            <Text>Your Event was rejected with the following message</Text>
-            <Text>{eventData.message}</Text>
-            <Pressable onPress={() => clearMessage()}>
-              <Text> Clear Message </Text>
-            </Pressable>
-          </View>
-        }
+        </ScrollView>
 
         <View style={styles.container}>
           {attendees.includes(USER.id) && eventData.status === "live" && eventData.host !== USER.id &&
-            <Pressable onPress={() => {navigation.navigate("Cancel", {
+            <Pressable style={styles.button} onPress={() => {navigation.navigate("Cancel", {
               eventData: eventData,
             })}}>
-              <Text>Cancel RSVP</Text>
+              <Text style={styles.body}>Cancel RSVP</Text>
             </Pressable>
           }
           {!attendees.includes(USER.id) && eventData.status === "live" &&
-            <Pressable onPress={() => {navigation.navigate("Register", {
+            <Pressable style={styles.button} onPress={() => {navigation.navigate("Register", {
               eventData: eventData,
             })}}>
-              <Text style={styles.subheader}>RSVP</Text>
+              <Text style={styles.body}>RSVP</Text>
             </Pressable>
           }
           {eventData.host === USER.id && eventData.status === "live" &&
-            <Pressable onPress={() => {navigation.navigate("Delete Event", {
+            <Pressable style={styles.button} onPress={() => {navigation.navigate("Delete Event", {
               eventData: eventData,
             })}}>
-              <Text> Cancel Event </Text>
+              <Text style={styles.body}>Cancel Event</Text>
             </Pressable>
           }
           {eventData.host === USER.id && eventData.status === "rejected" &&
-            <Pressable onPress={() => deleteEvent()}>
-              <Text> Delete Event </Text>
+            <Pressable style={styles.button} onPress={() => deleteEvent()}>
+              <Text style={styles.body}>Delete Event</Text>
             </Pressable>
           }
           {eventData.host === USER.id && eventData.status === "cancelled" &&
-            <Pressable onPress={() => {navigation.navigate("Restore Event", {
+            <Pressable style={styles.button} onPress={() => {navigation.navigate("Restore Event", {
               eventData: eventData,
             })}}>
-              <Text> Restore Event </Text>
+              <Text style={styles.body}>Restore Event</Text>
             </Pressable>
           }
           {eventData.reviewers.includes(USER.id) && eventData.status === "pending" &&
             <View>
-              <Pressable onPress={() => approveEvent()}>
-                <Text> Approve Event </Text>
-              </Pressable>
-              <Pressable onPress={() => rejectEvent()}>
-                <Text> Reject Event </Text>
-              </Pressable>
+              <View style={styles.hContainer}>
+                <Pressable style={[styles.buttonGreen, styles.hFlex, {marginRight: 10}]} onPress={() => approveEvent()}>
+                  <Text style={styles.bodyGreen}>Approve Event  <FontAwesome5 name="check" size={12} color={Colors.green} /></Text>
+                </Pressable>
+                <Pressable style={[styles.buttonPurple, styles.hFlex]} onPress={() => rejectEvent()}>
+                  <Text style={styles.bodyPurple}>Reject Event  <FontAwesome5 name="times" size={12} color={Colors.purple} /></Text>
+                </Pressable>
+              </View>
               <TextInput
-                style={styles.textInput}
+                style={[styles.field, styles.body, styles.input]}
                 value={message}
                 placeholder="leave an optional message to the organizer"
                 onChangeText={(newText) => setMessage(newText)}
@@ -183,6 +193,28 @@ const styles = StyleSheet.create({
   },
   container: {
     ...Layout.container,
+  },
+  hContainer: {
+    ...Layout.container,
+    flexDirection: "row",
+    flexWrap: "nowrap",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginVertical: 10
+  },
+  message: {
+    backgroundColor: Colors.offWhite,
+    borderRadius: 30,
+    padding: 20,
+    marginVertical: 10
+  },
+  hFlex: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  scroll: {
+    flex: 1
   },
   attendee: {
     ...Layout.container,
@@ -206,6 +238,14 @@ const styles = StyleSheet.create({
   body: {
     ...Typography.body
   },
+  bodyGreen: {
+    ...Typography.body,
+    color: Colors.green
+  },
+  bodyPurple: {
+    ...Typography.body,
+    color: Colors.purple
+  },
   header: {
     ...Typography.header,
     marginBottom: 5
@@ -221,13 +261,31 @@ const styles = StyleSheet.create({
   bottomMargin: {
     marginBottom: 10
   },
-  textInput: {
-    width: '80%',
-    height: 30,
-    padding: 8,
-    margin: 2,
-    backgroundColor: '#ddd',
-    borderStyle: "solid",
-    borderWidth:  1
+  button: {
+    ...Layout.button,
+    marginTop: 10
+  },
+  buttonGreen: {
+    ...Layout.button,
+    borderColor: Colors.green,
+    borderRadius: 20,
+    flexDirection: "row",
+    flexWrap: "nowrap",
+    marginTop: 10
+  },
+  buttonPurple: {
+    ...Layout.button,
+    borderColor: Colors.purple,
+    borderRadius: 20,
+    flexDirection: "row",
+    flexWrap: "nowrap",
+    marginTop: 10
+  },
+  field: {
+    ...Layout.button,
+    width: "100%",
+  },
+  input: {
+    paddingVertical: 8
   },
 });

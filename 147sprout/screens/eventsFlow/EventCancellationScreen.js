@@ -20,42 +20,32 @@ export default function EventRegistrationScreen({ route, navigation }) {
       attendees: eventData.attendees
     });
     const eventSnap = await getDoc(eventRef);
-    navigation.navigate("Events")
+    navigation.navigate("Events");
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.topContainer}>
 
-    <Text style={{fontSize: 20}}>
-      Are you sure you'd like to cancel your attendance?
-    </Text>
-    <Text>
-      Depending on event permissions, you may RSVP again.
-    </Text>
+      <Text style={[styles.subheader, styles.bottomMargin]}>Are you sure you'd like to cancel your attendance?</Text>
+      <Text style={[styles.body, styles.bottomMargin]}>Depending on event permissions, you may RSVP again.</Text>
 
-    {confirm ?
-      <View>
-        <Text style={{fontSize: 20}}>
-          Cancellation confirmed
-        </Text>
-        <Pressable onPress={() => updateAttendance()}>
-          <Text style={{fontSize: 20}}>
-            Cancel
-          </Text>
-        </Pressable>
-      </View>
-      :
-      <View>
-        <Pressable onPress={() => setConfirm(true)}>
-          <Text style={{fontSize: 20}}>
-            Confirm cancellation
-          </Text>
-        </Pressable>
-        <Text style={{fontSize: 20}}>
-          Cancel
-        </Text>
-      </View>
-    }
+      {confirm ?
+        <View style={styles.buttonGray}>
+          <Text style={styles.bodyGray}>Cancellation confirmed</Text>
+        </View>
+        :
+        <View>
+        <Pressable
+          style={styles.button}
+          onPress={() => {
+            setConfirm(true);
+            updateAttendance();
+          }}
+        >
+            <Text style={styles.body}>Confirm cancellation</Text>
+          </Pressable>
+        </View>
+      }
 
     </SafeAreaView>
   )
@@ -68,11 +58,26 @@ const styles = StyleSheet.create({
   container: {
     ...Layout.container,
   },
-  textInput: {
-    width: '80%',
-    height: 30,
-    padding: 8,
-    margin: 2,
-    backgroundColor: '#ddd',
+  button: {
+    ...Layout.button,
+  },
+  buttonGray: {
+    ...Layout.button,
+    borderColor: Colors.lightGray,
+    borderRadius: 20,
+  },
+  subheader: {
+    ...Typography.subheader,
+    lineHeight: 20,
+  },
+  body: {
+    ...Typography.body,
+  },
+  bodyGray: {
+    ...Typography.body,
+    color: Colors.lightGray
+  },
+  bottomMargin: {
+    marginBottom: 10
   }
 });

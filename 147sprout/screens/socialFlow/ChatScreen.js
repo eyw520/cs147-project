@@ -49,7 +49,7 @@ export default function ChatScreen({ route, navigation }) {
   }, [])
 
   return (
-    <GiftedChat style={styles.container}
+    <GiftedChat style={styles.topContainer}
         messages={messages.sort((a, b) => b.createdAt - a.createdAt)}
         onSend={messages => onSend(messages)}
         user={{
@@ -62,12 +62,29 @@ export default function ChatScreen({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
+  topContainer: {
+    ...Layout.topContainer,
+  },
   container: {
+    ...Layout.container,
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
+    overflow: "hidden",
+    paddingTop: 20
+  },
+  button: {
+    ...Layout.button,
+    marginVertical: 10
+  },
+  subheader: {
+    ...Typography.subheader,
+  },
+  body: {
+    ...Typography.body,
+  },
+  small: {
+    ...Typography.small,
+    fontSize: 12,
+    lineHeight: 12,
   },
   chatwindow: {
     height: '80%',

@@ -1,8 +1,9 @@
-import { StyleSheet, Pressable, Text, View, SafeAreaView } from 'react-native';
+import { StyleSheet, Pressable, Text, View, SafeAreaView, Image } from 'react-native';
 import React, { useEffect, useCallback, useState } from "react";
 import { db } from "../../firebase";
 import { collection, doc, getDoc, getDocs, updateDoc } from "firebase/firestore";
 import { Colors, Layout, Typography } from "../../styles";
+import * as Images from "../../assets/images/";
 
 import GroupPosts from "../../components/GroupPosts"
 import GroupMembers from "../../components/GroupMembers"
@@ -51,26 +52,32 @@ export default function GroupInformationScreen({ route }) {
 
   const renderTabSwitcher = () => {
     return (
-      <View>
+      <View style={styles.hContainer}>
         {currTab == "POSTS" ?
-          <Text style={{fontSize: 25}}> POSTS  </Text>
+          <View style={[styles.tab, styles.activeTab, styles.rightMargin]}>
+            <Text style={[styles.small, styles.activeText]}>POSTS</Text>
+          </View>
           :
-          <Pressable onPress={() => setCurrTab("POSTS")}>
-            <Text> POSTS </Text>
+          <Pressable style={[styles.tab, styles.rightMargin]} onPress={() => setCurrTab("POSTS")}>
+            <Text style={styles.small}>Posts</Text>
           </Pressable>
         }
         {currTab == "FEED" ?
-          <Text style={{fontSize: 25}}> FEED </Text>
+          <View style={[styles.tab, styles.activeTab, styles.rightMargin]}>
+            <Text style={[styles.small, styles.activeText]}>Feed</Text>
+          </View>
           :
-          <Pressable onPress={() => setCurrTab("FEED")}>
-            <Text> FEED </Text>
+          <Pressable style={[styles.tab, styles.rightMargin]} onPress={() => setCurrTab("FEED")}>
+            <Text style={styles.small}>Feed</Text>
           </Pressable>
         }
         {currTab == "MEMBERS" ?
-          <Text style={{fontSize: 25}}> MEMBERS </Text>
+          <View style={[styles.tab, styles.activeTab]}>
+            <Text style={[styles.small, styles.activeText]}>Members</Text>
+          </View>
           :
-          <Pressable onPress={() => setCurrTab("MEMBERS")}>
-            <Text> MEMBERS </Text>
+          <Pressable style={styles.tab} onPress={() => setCurrTab("MEMBERS")}>
+            <Text style={styles.small}>Members</Text>
           </Pressable>
         }
       </View>
@@ -78,44 +85,37 @@ export default function GroupInformationScreen({ route }) {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.topContainer}>
       <View style={styles.tabs}>
         {renderTabSwitcher()}
       </View>
 
       {currTab == "FEED" &&
         <View style={styles.container}>
-          <View style={styles.container}>
-            <Text> {groupData.groupDescription} </Text>
-            {groupData.members.includes(USER.id) ?
-              <Pressable onPress={() => leaveGroup()}>
-                <Text style={{fontSize: 25}}> Leave Group </Text>
-              </Pressable>
-              :
-              <Pressable onPress={() => joinGroup()}>
-                <Text style={{fontSize: 25}}> Join Group </Text>
-              </Pressable>
-            }
-          </View>
-          <View style={styles.container}>
-            <GroupPosts posts={posts} />
-          </View>
+          <Image style={[styles.headerImage, styles.bottomMargin]} source={Images.interests[groupData.img]}/>
+          <Text style={styles.body}>{groupData.groupDescription}</Text>
+          {groupData.members.includes(USER.id) ?
+            <Pressable style={styles.button} onPress={() => leaveGroup()}>
+              <Text style={styles.body}>Leave Group</Text>
+            </Pressable>
+            :
+            <Pressable style={styles.button} onPress={() => joinGroup()}>
+              <Text style={styles.body}>Join Group</Text>
+            </Pressable>
+          }
+          <GroupPosts posts={posts} />
         </View>
       }
 
       {currTab == "POSTS" &&
         <View style={styles.container}>
-          <View style={styles.container}>
-            <GroupPosts posts={posts} />
-          </View>
+          <GroupPosts posts={posts} />
         </View>
       }
 
       {currTab == "MEMBERS" &&
         <View style={styles.container}>
-          <View style={styles.container}>
-            <GroupMembers members={groupData.members} />
-          </View>
+          <GroupMembers members={groupData.members} />
         </View>
       }
 
@@ -124,18 +124,59 @@ export default function GroupInformationScreen({ route }) {
 }
 
 const styles = StyleSheet.create({
-  tabs: {
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
-    marginBottom: 25
+  topContainer: {
+    ...Layout.topContainer,
   },
   container: {
+    ...Layout.container,
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
-  }
+    overflow: "hidden",
+    paddingTop: 20
+  },
+  hContainer: {
+    ...Layout.container,
+    flexDirection: "row",
+    flexWrap: "nowrap",
+    alignItems: "center",
+    justifyContent: "space-between"
+  },
+  headerImage: {
+    ...Layout.image,
+    width: "100%",
+    height: 220,
+    borderRadius: 20
+  },
+  button: {
+    ...Layout.button,
+    marginVertical: 10
+  },
+  tab: {
+    ...Layout.button,
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  activeTab: {
+    borderColor: Colors.green
+  },
+  activeText: {
+    color: Colors.green
+  },
+  rightMargin: {
+    marginRight: 10
+  },
+  bottomMargin: {
+    marginBottom: 10
+  },
+  subheader: {
+    ...Typography.subheader,
+  },
+  body: {
+    ...Typography.body,
+  },
+  small: {
+    ...Typography.small,
+    fontSize: 12,
+    lineHeight: 12,
+  },
 });

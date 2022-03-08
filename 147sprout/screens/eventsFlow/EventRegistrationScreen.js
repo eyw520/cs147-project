@@ -1,8 +1,9 @@
-import { StyleSheet, Text, TextInput, Pressable, SafeAreaView} from 'react-native';
+import { StyleSheet, Text, TextInput, Pressable, SafeAreaView, View } from 'react-native';
 import React, { useEffect, useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { Colors, Layout, Typography } from "../../styles";
+import { FontAwesome5 } from '@expo/vector-icons';
 
 import USER from "../../consts/user";
 
@@ -26,7 +27,7 @@ export default function EventRegistrationScreen({ route, navigation }) {
     await updateDoc(eventRef, {
       attendees: [...eventData.attendees, USER.id]
     });
-    navigation.navigate("Events")
+    navigation.navigate("Events");
   }
 
   useEffect(() => {
@@ -35,45 +36,49 @@ export default function EventRegistrationScreen({ route, navigation }) {
 
   return (
     <SafeAreaView style={styles.topContainer}>
-    <Text style={{fontSize: 20}}> Fill out to confirm your registration: </Text>
+    <Text style={styles.subheader}> Fill out to confirm your registration: </Text>
 
+    <Text style={styles.small}>what interests you about the event?</Text>
     <TextInput
-      style={styles.textInput}
+      style={[styles.field, styles.body, styles.input]}
       value={request}
-      placeholder="let the organizers know why you're interested in the event!"
+      placeholder="let us know why you're interested!"
       onChangeText={(newText) => setRequest(newText) }
     />
 
+    <Text style={styles.small}>any other details you'd like to provide?</Text>
     <TextInput
-      style={styles.textInput}
+      style={[styles.field, styles.body, styles.input]}
       value={otherDetails}
-      placeholder="are there any other details you'd like to provide?"
+      placeholder="additional info..."
       onChangeText={(newText) => setOtherDetails(newText) }
     />
 
-    {confirm ?
-      <Text style={{fontSize: 20}}>
-        Attendance confirmed
-      </Text>
-      :
-      <Pressable onPress={() => setConfirm(true)}>
-        <Text style={{fontSize: 20}}>
-          Confirm attendance
-        </Text>
-      </Pressable>
-    }
+    <View style={styles.submit}>
+      {confirm ?
+        <View style={styles.complete}>
+          <Text style={styles.bodyGreen}>
+            Confirmed  <FontAwesome5 name="check" size={12} color={Colors.green} />
+          </Text>
+        </View>
+        :
+        <Pressable style={styles.button} onPress={() => setConfirm(true)}>
+          <Text style={styles.body}>Confirm attendance</Text>
+        </Pressable>
+      }
+    </View>
 
-    {enableSubmit ?
-      <Pressable onPress={() => updateAttendance()}>
-        <Text style={{fontSize: 20}}>
-          Submit
-        </Text>
-      </Pressable>
-      :
-      <Text style={{fontSize: 20}}>
-        Fill out above fields to submit
-      </Text>
-    }
+    <View style={styles.submit}>
+      {enableSubmit ?
+        <Pressable style={styles.button} onPress={() => updateAttendance()}>
+          <Text style={styles.body}>Submit</Text>
+        </Pressable>
+        :
+        <View style={styles.buttonGray}>
+          <Text style={styles.bodyGray}>Fill All Fields to Submit</Text>
+        </View>
+      }
+    </View>
 
     </SafeAreaView>
   )
@@ -86,11 +91,53 @@ const styles = StyleSheet.create({
   container: {
     ...Layout.container,
   },
-  textInput: {
-    width: '80%',
-    height: 30,
-    padding: 8,
-    margin: 2,
-    backgroundColor: '#ddd',
-  }
+  button: {
+    ...Layout.button,
+  },
+  buttonGray: {
+    ...Layout.button,
+    borderColor: Colors.lightGray,
+    borderRadius: 20,
+  },
+  complete: {
+    ...Layout.button,
+    borderColor: Colors.green,
+    borderRadius: 20,
+    flexDirection: "row",
+    flexWrap: "nowrap",
+  },
+  subheader: {
+    ...Typography.subheader,
+    marginBottom: 10
+  },
+  body: {
+    ...Typography.body
+  },
+  bodyGray: {
+    ...Typography.body,
+    color: Colors.lightGray
+  },
+  bodyGreen: {
+    ...Typography.body,
+    color: Colors.green
+  },
+  small: {
+    ...Typography.small,
+    fontSize: 10,
+    lineHeight: 10,
+    marginLeft: 15,
+    marginBottom: 4
+  },
+  field: {
+    ...Layout.button,
+    width: "100%",
+    marginBottom: 10
+  },
+  input: {
+    paddingVertical: 8
+  },
+  submit: {
+    alignSelf: "flex-start",
+    marginTop: 10
+  },
 });

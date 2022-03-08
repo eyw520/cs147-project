@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList, Pressable, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Pressable, SafeAreaView, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Colors, Layout, Typography } from "../styles";
 import * as Images from "../assets/images/";
@@ -11,22 +11,25 @@ export default function ChatList({ chats }) {
   const renderItem = ({ item }) => {
     return (
       <View style={styles.container}>
-        <Pressable onPress={() => {navigation.navigate("Chat", {
+        <Pressable style={styles.chat} onPress={() => {navigation.navigate("Chat", {
           chatData: item,
         })}}>
-          {item.chatName === "" ?
-            <Text>Direct Message w/ {item.members.filter(item => item !== USER.id)[0]}</Text>
-            :
-            <Text>{item.chatName}</Text>
-          }
+          <View>
+            {item.chatName === "" ?
+              <Text style={styles.body}>Direct Message w/ {item.members.filter(item => item !== USER.id)[0]}</Text>
+              :
+              <Text style={styles.body}>{item.chatName}</Text>
+            }
 
-          {item.latestSender === USER.name ?
-          <Text>You</Text>
-          :
-          <Text>{item.latestSender}</Text>
-          }
-
-          <Text>{item.latestMessage}</Text>
+            <View style={styles.hContainer}>
+              {item.latestSender === USER.name ?
+              <Text numberOfLines={1} style={styles.body}>You: </Text>
+              :
+              <Text numberOfLines={1} style={styles.body}>{item.latestSender}: </Text>
+              }
+              <Text numberOfLines={1} style={styles.body}>{item.latestMessage}</Text>
+            </View>
+          </View>
         </Pressable>
       </View>
     );
@@ -50,4 +53,21 @@ const styles = StyleSheet.create({
   container: {
     ...Layout.container,
   },
+  chat: {
+    ...Layout.container,
+    flexDirection: "row",
+    flexWrap: "nowrap",
+    alignItems: "center",
+    marginVertical: 10
+  },
+  hContainer: {
+    ...Layout.container,
+    flexDirection: "row",
+    flexWrap: "nowrap",
+    alignItems: "center",
+  },
+  body: {
+    ...Typography.body,
+    overflow: "hidden"
+  }
 });

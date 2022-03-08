@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
 import { Colors, Layout, Typography } from "../../styles";
+import * as Images from "../../assets/images";
 
 import USER from "../../consts/user";
 
@@ -39,15 +40,14 @@ export default function HomeScreen({ navigation }) {
 
       {currFlower !== undefined ?
         <View style={styles.smallGarden}>
-          <Text> {currFlower.flowerName} </Text>
-          <Text> {currFlower.growth} </Text>
+          <Text style={styles.body}>{currFlower.flowerName}</Text>
+          <Text style={styles.body}>{currFlower.growth}</Text>
+          <Image style={styles.image} source={Images.garden[currFlower.img]} />
 
-          <Pressable onPress={() => {navigation.navigate("Your Garden", {
+          <Pressable style={styles.button} onPress={() => {navigation.navigate("Your Garden", {
             flowers: userFlowers
           })}}>
-            <Text>
-              View Your Garden
-            </Text>
+            <Text style={styles.body}>View Your Garden</Text>
           </Pressable>
         </View>
         :
@@ -68,6 +68,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
+  button: {
+    ...Layout.button
+  },
   header: {
     ...Typography.header
   },
@@ -83,6 +86,9 @@ const styles = StyleSheet.create({
     height: "10%"
   },
   image: {
-    marginVertical: 20
+    ...Layout.image,
+    marginVertical: 20,
+    height: 300,
+    width: 300
   }
 });

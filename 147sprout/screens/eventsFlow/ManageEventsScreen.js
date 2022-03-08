@@ -47,7 +47,7 @@ export default function ManageEventsScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.topContainer}>
       <View style={styles.container}>
-        <Text style={styles.subheader}>Your Hosting Events</Text>
+        <Text style={styles.subheader}>Events You're Hosting</Text>
         <EventList events={userHostingLive} />
       </View>
 

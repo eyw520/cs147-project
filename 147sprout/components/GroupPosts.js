@@ -6,9 +6,9 @@ export default function GroupPosts({ posts }) {
     return (
       <View style={styles.container}>
         <View key={item.title}>
-          <Text> {item.posterId}, {item.id} </Text>
-          <Text> {item.contents} </Text>
-          <Text> {item.likes} </Text>
+          <Text style={styles.body}>{item.posterId}, {item.id}</Text>
+          <Text style={styles.body}>{item.contents}</Text>
+          <Text style={styles.body}>{item.likes}</Text>
         </View>
       </View>
     );
@@ -32,4 +32,7 @@ const styles = StyleSheet.create({
   container: {
     ...Layout.container,
   },
+  body: {
+    ...Typography.body
+  }
 });

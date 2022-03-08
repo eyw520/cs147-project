@@ -18,6 +18,13 @@ export const container = {
   justifyContent: 'flex-start',
 };
 
+export const hContainer = {
+  flexDirection: "row",
+  flexWrap: "nowrap",
+  alignItems: 'center',
+  justifyContent: 'flex-start',
+};
+
 export const image = {
   resizeMode: 'cover',
   alignSelf: 'center',

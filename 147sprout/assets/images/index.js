@@ -18,11 +18,14 @@ export const events = {
 }
 
 export const profiles = {
-  "chris.png": require('./profiles/chris.png'),
-  "eden.png": require('./profiles/eden.png'),
-  "jinhee.png": require('./profiles/jinhee.png'),
-  "sampleProfile.png": require('./profiles/sample.png'),
-  "yubin.png": require('./profiles/yubin.png')
+  andrew: require('./profiles/andrew.png'),
+  chris: require('./profiles/chris.png'),
+  eden: require('./profiles/eden.png'),
+  james: require('./profiles/james.png'),
+  jinhee: require('./profiles/jinhee.png'),
+  natalie: require('./profiles/natalie.png'),
+  sample: require('./profiles/sample.png'),
+  yubin: require('./profiles/yubin.png')
 }
 
 export const garden = {
@@ -31,6 +34,9 @@ export const garden = {
 
 export const interests = {
   aapi: require('./interests/aapi.png'),
+  climate: require('./interests/climate.png'),
   environmentalism: require('./interests/environmentalism.png'),
   feminism: require('./interests/feminism.png'),
+  healthcare: require('./interests/healthcare.png'),
+  housing: require('./interests/housing.png'),
 }

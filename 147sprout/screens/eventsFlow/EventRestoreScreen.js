@@ -20,33 +20,25 @@ export default function EventRestoreScreen({ route, navigation }) {
   return (
     <SafeAreaView style={styles.topContainer}>
 
-    <Text style={{fontSize: 20}}>
-      Would you like to restore your event?
-    </Text>
+      <Text style={[styles.subheader, styles.bottomMargin]}>Would you like to restore your event?</Text>
 
-    {confirm ?
-      <View>
-        <Text style={{fontSize: 20}}>
-          Restore confirmed
-        </Text>
-        <Pressable onPress={() => restoreEvent()}>
-          <Text style={{fontSize: 20}}>
-            Restore
-          </Text>
-        </Pressable>
-      </View>
-      :
-      <View>
-        <Pressable onPress={() => setConfirm(true)}>
-          <Text style={{fontSize: 20}}>
-            Confirm restore
-          </Text>
-        </Pressable>
-        <Text style={{fontSize: 20}}>
-          Restore
-        </Text>
-      </View>
-    }
+      {confirm ?
+        <View style={styles.buttonGray}>
+          <Text style={styles.bodyGray}>Restore confirmed</Text>
+        </View>
+        :
+        <View>
+          <Pressable
+            style={styles.button}
+            onPress={() => {
+              setConfirm(true);
+              restoreEvent();
+            }}
+          >
+            <Text style={styles.body}>Confirm restore</Text>
+          </Pressable>
+        </View>
+      }
 
     </SafeAreaView>
   )
@@ -59,11 +51,26 @@ const styles = StyleSheet.create({
   container: {
     ...Layout.container,
   },
-  textInput: {
-    width: '80%',
-    height: 30,
-    padding: 8,
-    margin: 2,
-    backgroundColor: '#ddd',
+  button: {
+    ...Layout.button,
+  },
+  buttonGray: {
+    ...Layout.button,
+    borderColor: Colors.lightGray,
+    borderRadius: 20,
+  },
+  subheader: {
+    ...Typography.subheader,
+    lineHeight: 20,
+  },
+  body: {
+    ...Typography.body,
+  },
+  bodyGray: {
+    ...Typography.body,
+    color: Colors.lightGray
+  },
+  bottomMargin: {
+    marginBottom: 10
   }
 });
