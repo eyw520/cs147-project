@@ -29,7 +29,9 @@ export const profiles = {
 }
 
 export const garden = {
-  bud: require('./garden/bud.png')
+  "bud.png": require('./garden/bud.png'),
+  "rose.png": require('./garden/rose.png'),
+  "sunflower.png": require('./garden/sunflower.png')
 }
 
 export const interests = {

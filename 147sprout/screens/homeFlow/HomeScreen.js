@@ -33,7 +33,7 @@ export default function HomeScreen({ navigation }) {
       {currFlower !== undefined ?
         <View style={styles.garden}>
           <Text style={styles.small}>{currFlower.flowerName}</Text>
-          <Image style={styles.image} source={Images.garden["bud"]} />
+          <Image style={styles.image} source={Images.garden["bud.png"]} />
 
           <Text style={[styles.small, styles.progressInfo]}>Progress Until Bloom</Text>
           <View style={styles.progressBar}>
