@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   },
   button: {
     ...Layout.button,
-    marginVertical: 10
+    marginVertical: 20
   },
   tab: {
     ...Layout.button,

@@ -29,20 +29,18 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.topContainer}>
-      <View style={styles.container}>
-        <Text style={styles.subheader}>
-          Welcome back to Sprout, {USER.name}!
-        </Text>
-        <Text style={styles.body}>
-          Select a tab below to explore.
-        </Text>
-      </View>
 
       {currFlower !== undefined ?
-        <View style={styles.smallGarden}>
-          <Text style={styles.body}>{currFlower.flowerName}</Text>
-          <Text style={styles.body}>{currFlower.growth}</Text>
-          <Image style={styles.image} source={Images.garden[currFlower.img]} />
+        <View style={styles.garden}>
+          <Text style={styles.small}>{currFlower.flowerName}</Text>
+          <Image style={styles.image} source={Images.garden["bud"]} />
+
+          <Text style={[styles.small, styles.progressInfo]}>Progress Until Bloom</Text>
+          <View style={styles.progressBar}>
+            <View style={[styles.progress, {width: `${currFlower.growth}%`}]}>
+              <Text style={[styles.small, styles.progressText]}>{currFlower.growth}%</Text>
+            </View>
+          </View>
 
           <Pressable style={styles.button} onPress={() => {navigation.navigate("Your Garden", {
             flowers: userFlowers
@@ -51,7 +49,13 @@ export default function HomeScreen({ navigation }) {
           </Pressable>
         </View>
         :
-        <Text style={[styles.smallGarden, styles.body]}>You have no plants in the garden — attend events to receive flowers from organizers!</Text>
+        <View style={styles.container}>
+          <View style={styles.container}>
+            <Text style={styles.subheader}>Welcome back to <Text style={{fontStyle: "italic"}}>sprout</Text>, {USER.name}!</Text>
+            <Text style={styles.body}>Select a tab below to explore.</Text>
+          </View>
+          <Text style={[styles.noGarden, styles.body]}>You have no plants in the garden — attend events to receive flowers from organizers!</Text>
+        </View>
       }
     </SafeAreaView>
   )
@@ -60,16 +64,31 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   topContainer: {
     ...Layout.topContainer,
-    justifyContent: "center"
-  },
-  container: {
-    ...Layout.container,
-    height: "60%",
     justifyContent: "center",
     alignItems: "center"
   },
+  container: {
+    ...Layout.container,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  garden: {
+    ...Layout.container,
+    alignItems: "center",
+    width: 300
+  },
+  image: {
+    ...Layout.image,
+    marginVertical: 20,
+    height: 300,
+    width: 300
+  },
   button: {
-    ...Layout.button
+    ...Layout.button,
+    width: "100%",
+    paddingVertical: 20,
+    borderRadius: 30
   },
   header: {
     ...Typography.header
@@ -81,14 +100,36 @@ const styles = StyleSheet.create({
     ...Typography.body,
     textAlign: "center"
   },
-  smallGarden: {
-    ...Layout.container,
-    height: "10%"
+  small: {
+    ...Typography.small,
+    fontSize: 12,
+    lineHeight: 12
   },
-  image: {
-    ...Layout.image,
+  noGarden: {
+    marginBottom: 40
+  },
+  progressInfo: {
+    color: Colors.gray,
+    marginTop: 20
+  },
+  progressBar: {
+    ...Layout.button,
+    backgroundColor: Colors.darkGreen,
+    borderColor: Colors.pink,
+    borderWidth: 4,
     marginVertical: 20,
-    height: 300,
-    width: 300
+    paddingVertical: 0,
+    paddingHorizontal: 0,
+    width: "100%",
+  },
+  progress: {
+    ...Layout.button,
+    backgroundColor: Colors.green,
+    borderWidth: 0,
+    alignSelf: "flex-start",
+  },
+  progressText: {
+    color: Colors.white,
+    alignSelf: "flex-end"
   }
 });
