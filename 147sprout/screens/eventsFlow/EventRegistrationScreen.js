@@ -27,7 +27,7 @@ export default function EventRegistrationScreen({ route, navigation }) {
     await updateDoc(eventRef, {
       attendees: [...eventData.attendees, USER.id]
     });
-    navigation.navigate("Events");
+    navigation.navigate("EventsScreen");
   }
 
   useEffect(() => {
