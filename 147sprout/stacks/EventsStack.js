@@ -48,6 +48,13 @@ export default function EventsStack({ navigation }) {
       {User.isReviewer ?
         <Stack.Screen name="Manage Events" component={ManageEventsScreen}
           options={() => ({
+            headerLeft: () => (
+              <Pressable
+                onPress={() => navigation.navigate('EventsScreen')}
+                style={styles.topBar}>
+                <Text style={styles.small}>Events</Text>
+              </Pressable>
+            ),
             headerRight: () => (
               <Pressable
                 onPress={() => navigation.navigate('Review Events')}
@@ -58,7 +65,17 @@ export default function EventsStack({ navigation }) {
           })}
         />
         :
-        <Stack.Screen name="Manage Events" component={ManageEventsScreen}/>
+        <Stack.Screen name="Manage Events" component={ManageEventsScreen}
+          options={() => ({
+            headerLeft: () => (
+              <Pressable
+                onPress={() => navigation.navigate('EventsScreen')}
+                style={styles.topBar}>
+                <Text style={styles.small}>Events</Text>
+              </Pressable>
+            ),
+          })}
+        />
       }
       <Stack.Screen name="Create Event" component={CreateEventScreen} />
       <Stack.Screen name="Find Events" component={FindEventsScreen} />
