@@ -67,10 +67,14 @@ export default function SocialStack({ navigation }) {
       <Stack.Screen name="Messages" component={MessagesScreen} />
       <Stack.Screen name="Chat" component={ChatScreen} />
       <Stack.Screen name="Your Friends" component={FriendsDisplayScreen} />
+      <Stack.Screen name="Your Groups" component={UserGroupsDisplayScreen} />
       <Stack.Screen name="View User Groups" component={UserGroupsDisplayScreen} />
 
       <Stack.Screen name="Discover Groups" component={GroupsDisplayScreen} />
-      <Stack.Screen name="Your Groups" component={GroupsDisplayScreen} />
+      <Stack.Screen name="GroupsList" component={GroupsDisplayScreen}
+        options={() => ({
+          title: 'Your Groups',
+      })}/>
 
       <Stack.Screen name="AAPI Rights" component={GroupInformationScreen} />
       <Stack.Screen name="Climate Change" component={GroupInformationScreen} />

@@ -56,7 +56,7 @@ export default function SocialScreen({ navigation }) {
       <View style={styles.container}>
         <View style={styles.hContainer}>
           <Text style={styles.subheader}>Your Groups</Text>
-          <Pressable onPress={() => {navigation.navigate("Your Groups", {
+          <Pressable onPress={() => {navigation.navigate("GroupsList", {
               groupList: userMemberGroups,
               title: "Your Groups"
             })}}>
