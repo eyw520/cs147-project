@@ -14,6 +14,7 @@ export default function ProfileScreen({ navigation }) {
   const [userLocations, setUserLocations] = useState([])
   const [userSkills, setUserSkills] = useState([])
   const [userFriends, setUserFriends] = useState([])
+  const [userGroups, setUserGroups] = useState([])
 
   const getProfile = async () => {
     const profileRef = doc(db, "users", USER.id);
@@ -24,6 +25,7 @@ export default function ProfileScreen({ navigation }) {
       setUserInterests(data.interests)
       setUserLocations(data.locations)
       setUserSkills(data.skills)
+      setUserGroups(data.groups)
       setUserFriends(data.friends)
     }
   };
@@ -47,7 +49,12 @@ export default function ProfileScreen({ navigation }) {
             })}}>
             <Text style={styles.body}>Your Friends</Text>
           </Pressable>
-          <Text style={[styles.button, styles.body, styles.tag]}>Groups</Text>
+          <Pressable
+            onPress={() => {navigation.navigate("Your Groups", {
+              groups: userGroups
+            })}}>
+            <Text style={[styles.button, styles.body, styles.tag]}>Groups</Text>
+          </Pressable>
           <View style={[styles.button, styles.tag]}>
             <FontAwesome5 style={{marginRight: 5}} name="lock" size={12} color={Colors.black} />
             <Text style={styles.body}>Make Public</Text>

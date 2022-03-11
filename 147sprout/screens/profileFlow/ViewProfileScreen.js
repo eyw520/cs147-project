@@ -38,17 +38,17 @@ export default function ViewProfileScreen({ route, navigation }) {
     const selfData = selfSnap.data()
     let index1 = selfData.friends.indexOf(userData.id);
     if (index1 > -1) {
-      selfData.friends.splice(index1, 1)
+      const newFriends = selfData.friends.splice(index1, 1)
       await updateDoc(doc(db, "users", USER.id), {
-        friends: selfData.friends
+        friends: newFriends
       });
     }
     const userRef = doc(db, "users", userData.id);
     let index2 = userData.friends.indexOf(USER.id);
     if (index1 > -1) {
-      userData.friends.splice(index2, 1)
+      const newFriends = userData.friends.splice(index2, 1)
       await updateDoc(doc(db, "users", userData.id), {
-        friends: userData.friends.splice(index2, 1)
+        friends: newFriends
       });
     }
     setIsFriend(false)
@@ -105,7 +105,7 @@ export default function ViewProfileScreen({ route, navigation }) {
           <Pressable
             style={[styles.button, styles.tag]}
             onPress={() => navigation.navigate("View User Groups", {
-              userGroups: userData.groups,
+              groups: userData.groups,
             })}>
             <Text style={styles.body}>Groups</Text>
           </Pressable>

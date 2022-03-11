@@ -8,14 +8,14 @@ import GroupDisplayList from "../../components/GroupDisplayList";
 
 // provided in route a list of groups, display to take up entire screen.
 export default function GroupsDisplayScreen({ route }) {
-  const { userGroups } = route.params;
+  const { groups } = route.params;
   const [groupList, setGroupList] = useState([])
 
   const getGroupList = async () => {
     const querySnapshot = await getDocs(collection(db, "groups"));
     let ls = []
     querySnapshot.forEach((doc) => { ls = [...ls, doc.data()] });
-    setGroupList(ls.filter(item => userGroups.includes(item.id)))
+    setGroupList(ls.filter(item => groups.includes(item.id)))
   };
 
   useEffect(() => {

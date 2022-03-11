@@ -66,6 +66,7 @@ export default function HomeStack({ navigation }) {
       <Stack.Screen name="View Profile" component={ViewProfileScreen} />
       <Stack.Screen name="View Flower" component={ViewFlowerScreen} />
       <Stack.Screen name="Your Garden" component={YourGardenScreen} />
+      <Stack.Screen name="Your Groups" component={UserGroupsDisplayScreen}/>
       <Stack.Screen name="View User Groups" component={UserGroupsDisplayScreen}/>
       <Stack.Screen name="Settings" component={SettingsScreen} />
     </Stack.Navigator>
