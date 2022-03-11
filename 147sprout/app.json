@@ -4,6 +4,7 @@
     "slug": "147sprout",
     "version": "1.0.0",
     "orientation": "portrait",
+    "owner": "cs147w22sprout",
     "icon": "./assets/sprout.png",
     "splash": {
       "image": "./assets/sprout.png",
