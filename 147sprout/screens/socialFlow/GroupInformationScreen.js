@@ -103,7 +103,9 @@ export default function GroupInformationScreen({ route }) {
               <Text style={styles.body}>Join Group</Text>
             </Pressable>
           }
-          <GroupPosts posts={posts} />
+          <View style={[styles.container, {paddingTop: 0}]}>
+            <GroupPosts posts={posts} />
+          </View>
         </View>
       }
 

@@ -45,7 +45,7 @@ export default function GroupMembers({ members }) {
           :
           <View style={styles.member}>
             <Image style={styles.image} source={Images.profiles[item.img]} />
-            <Text style={styles.body}>{item.name}, {item.img}</Text>
+            <Text style={styles.body}>{item.name}, </Text>
             <Text style={styles.pronouns}>{item.pronouns}</Text>
           </View>
         }
