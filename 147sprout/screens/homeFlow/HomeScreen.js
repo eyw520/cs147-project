@@ -33,7 +33,7 @@ export default function HomeScreen({ navigation }) {
       {currFlower !== undefined ?
         <View style={styles.garden}>
           <Text style={styles.small}>{currFlower.flowerName}</Text>
-          <Image style={styles.image} source={Images.garden["bud.png"]} />
+          <Image style={styles.image} source={Images.garden[currFlower.imgLarge]} />
 
           <Text style={[styles.small, styles.progressInfo]}>Progress Until Bloom</Text>
           <View style={styles.progressBar}>
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     ...Layout.image,
     marginVertical: 20,
     height: 300,
-    width: 300
+    width: 300,
   },
   button: {
     ...Layout.button,
